@@ -1,0 +1,56 @@
+section {
+    background-color: #21242A;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 5px;
+    display: flex;
+}
+.card_img1 {
+    display: flex;
+}
+.card_img1 img{
+    width: 200px;
+    background-repeat: repeat;
+    border-radius: 5px 0 0 5px;
+}
+.form_container {
+    width: 100%;
+}
+.form_container form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+}
+.form_container form h1 {
+    font-weight: 700;
+    color: #F5A904;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+.form_container form input[type=submit] {
+    width: 100%;
+    height: 40px;
+    color: #000;
+    background-color: #F5A904;
+    border: 0;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: 500;
+    margin-bottom: 20px;
+    transition: 1s all;
+}
+.form_container form input[type=submit]:hover {
+    transition: 1s all;
+    background-color: #fdab27;
+}
+.form_span {
+    color: #fff;
+}   
+.form_span a {
+    color: #F5A904;
+}
+.form_span, .form_span a {
+    font-size: 0.9em;
+}
