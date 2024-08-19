@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 //Components
 import Header from './components/header/Header';
 import Container from './components/container/Container';
+import { ToastContainer } from 'react-toastify';
 
 //Pages
 import Home from './components/pages/Home/Home';
@@ -17,6 +18,7 @@ function App() {
   return (
     <Router>
       <UserProvider>
+        <ToastContainer />
         <Header/>
         <Container>
           <Routes>
