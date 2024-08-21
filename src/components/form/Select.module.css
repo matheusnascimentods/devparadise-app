@@ -9,7 +9,7 @@
     font-weight: bold;
     font-size: 1em;
     font-weight: 600;
-    color: #F5A904;
+    color: var(--yellow);
 }
 
 .form_control select {

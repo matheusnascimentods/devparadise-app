@@ -21,7 +21,7 @@ export default function Login() {
   }
 
   function handleOption(e) {
-
+    setUser({...user, option: e.target.options[e.target.selectdIndex].text})
   }
 
   function handleSubmit(e) {
@@ -29,14 +29,15 @@ export default function Login() {
     login(user);
   }
 
+  let options = ['Dev', 'Recrutador'];
+
   return (
-    <section>
+    <section className={styles.form}>
       <div className={styles.form_container}>
         <form onSubmit={handleSubmit}>
           <h1>Login</h1>
           <Input text="E-mail" type='email' name='email' placeholder='Informe o seu e-mail' handleOnChange={handleChange}/>
           <Input text="Senha" type='password' name='password' placeholder='Informe sua senha' handleOnChange={handleChange}/>
-    
           <input type="submit" value="Login" />
           <p className={styles.form_span}>
               Não tem conta? <Link to='/register'>Clique aqui.</Link>

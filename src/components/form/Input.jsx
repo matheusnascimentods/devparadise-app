@@ -5,7 +5,7 @@ export default function Input({type , text, name , placeholder, handleOnChange, 
   return (
     <div className={styles.form_control}>
         <label htmlFor={name}>{text}:</label>
-        <input type={type} name={name} id={name} placeholder={placeholder} value={value} onChange={handleOnChange} {...(multiple ? {multiple} : '')} />
+        <input type={type} name={name} id={name} placeholder={placeholder} value={value} onChange={handleOnChange} {...(multiple ? {multiple} : '')} autoComplete='off'/>
     </div>
   )
 }

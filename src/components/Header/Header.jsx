@@ -6,6 +6,12 @@ import styles from './Header.module.css';
 import { Context } from '../../context/UserContext';
 import { useContext } from 'react';
 
+//Components
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import Offcanvas from 'react-bootstrap/Offcanvas';
+
 export default function Header() {
 
   const { authenticated, logout } = useContext(Context);
@@ -16,32 +22,38 @@ export default function Header() {
           <Link to='/'>
             <img src={Logo} alt="Devparadise" />
           </Link>
-          <nav className={ styles.navbar }>
-            <ul>
-              {authenticated ? (
-                <>
-                  <li>
-                    <Link to='/me'>Perfil</Link>
-                  </li>
-                  <li>
-                    <Link to='/me'>Meus Projetos</Link>
-                  </li>
-                  <li>
-                    <Link onClick={logout} to='/login'>Logout</Link>
-                  </li>
-                </>
-                ) : (
-                  <> 
-                  <li>
-                    <Link to='/login'>Login</Link>
-                  </li>
-                  <li>
-                    <Link to='/register'>Cadastrar</Link>
-                  </li>
-                </>
-              )}
-            </ul>
-          </nav>
+          <Navbar key='sm' expand='sm'>
+          <Container fluid>
+            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-sm`} />
+            <Navbar.Offcanvas
+              id={`offcanvasNavbar-expand-sm`}
+              aria-labelledby={`offcanvasNavbarLabel-expand-sm`}
+              placement="end"
+            >
+              <Offcanvas.Header closeButton>
+                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-sm`}>
+                  Menu
+                </Offcanvas.Title>
+              </Offcanvas.Header>
+              <Offcanvas.Body>
+                <Nav className="justify-content-end flex-grow-1 pe-3">
+                  {authenticated ? (
+                  <>
+                    <Nav.Link className={styles.nav_item} href="/me">Meu perfil</Nav.Link>
+                    <Nav.Link href="/my-projects">Meus projetos</Nav.Link>
+                    <Nav.Link href="/login" onClick={logout}>Logout</Nav.Link>
+                  </>
+                  ) : (
+                    <> 
+                      <Nav.Link href="/login">Login</Nav.Link>
+                      <Nav.Link href="/register">Cadastrar</Nav.Link>
+                    </>
+                  )}
+                </Nav>
+              </Offcanvas.Body>
+            </Navbar.Offcanvas>
+          </Container>
+        </Navbar>
         </div>
     </header>
   )

@@ -1,6 +1,6 @@
-section {
+.form {
     background-color: #21242A;
-    width: 90%;
+    width: 100%;
     max-width: 600px;
     border-radius: 5px;
     display: flex;
@@ -25,7 +25,7 @@ section {
 }
 .form_container form h1 {
     font-weight: 700;
-    color: #F5A904;
+    color: var(--yellow);
     font-size: 2em;
     margin-bottom: 20px;
 }
@@ -37,7 +37,7 @@ section {
     border: 0;
     border-radius: 5px;
     font-size: 1em;
-    font-weight: 500;
+    font-weight: 700;
     margin-bottom: 20px;
     transition: 1s all;
 }
@@ -49,7 +49,7 @@ section {
     color: #fff;
 }   
 .form_span a {
-    color: #F5A904;
+    color: var(--yellow);
 }
 .form_span, .form_span a {
     font-size: 0.9em;

@@ -16,9 +16,6 @@ export default function useAuth() {
             axios.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
             SetAuthenticated(true);
         }
-
-        console.log(localStorage.getItem('token'), authenticated);
-        
     }, []);
 
     async function register(user) {

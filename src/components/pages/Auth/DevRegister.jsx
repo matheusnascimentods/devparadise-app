@@ -28,7 +28,7 @@ export default function DevRegister() {
 
   return (
     <>
-      <section>
+      <section className={styles.form}>
           <div className={styles.form_container}>
             <form onSubmit={handleSubmit}>
               <h1>Criar conta como DEV</h1>
@@ -37,6 +37,7 @@ export default function DevRegister() {
               <Input text="E-mail" type='email' name='email' placeholder='Informe o seu e-mail' handleOnChange={handleChange}/>
               <Input text="CPF" type='number' name='cpf' placeholder='Informe o seu CPF' handleOnChange={handleChange}/>
               <Input text="Telefone" type='phone' name='phone' placeholder='Informe o seu Telefone' handleOnChange={handleChange}/>
+              <Input text="Descrição" type='text' name='description' placeholder='Informe uma descrição sobre você' handleOnChange={handleChange} />
               <Input text="Senha" type='password' name='password' placeholder='Escolha uma senha' handleOnChange={handleChange}/>
 
               <input type="submit" value="Criar conta" />
