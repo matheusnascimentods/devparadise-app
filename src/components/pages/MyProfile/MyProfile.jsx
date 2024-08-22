@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 //API
 import axios from 'axios';
@@ -11,9 +12,10 @@ import { RxGithubLogo } from "react-icons/rx";
 import { RiEditFill } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
 import { FaLinkedin } from "react-icons/fa";
+
+//Components
 import Badges from '../../Badges/Badges';
 import SmallCardContainer from '../../SmallCardConstainer/SmallCardContainer';
-import { Link } from 'react-router-dom';
 
 export default function MyProfile({data}) {
 

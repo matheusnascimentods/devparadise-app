@@ -5,14 +5,6 @@
     border-radius: 5px;
     display: flex;
 }
-.card_img1 {
-    display: flex;
-}
-.card_img1 img{
-    width: 200px;
-    background-repeat: repeat;
-    border-radius: 5px 0 0 5px;
-}
 .form_container {
     width: 100%;
 }
@@ -27,7 +19,7 @@
     font-weight: 700;
     color: var(--yellow);
     font-size: 2em;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 .form_container form input[type=submit] {
     width: 100%;

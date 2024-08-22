@@ -23,3 +23,15 @@
 .form_control input::placeholder {
     color: #7b7b7b
 }
+.form_control input[type=file] {
+    height: auto;
+}
+.form_control input[type="file"]::-webkit-file-upload-button {
+    background: #F5A904;
+    color: #000000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 15px;
+}

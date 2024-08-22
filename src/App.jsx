@@ -11,6 +11,7 @@ import Login from './components/pages/Auth/Login';
 import DevRegister from './components/pages/Auth/DevRegister';
 import MyProfile from './components/pages/MyProfile/MyProfile';
 import EditProfileDev from './components/pages/EditProfileDev/EditProfileDev';
+import Changepassword from './components/pages/ChangePassword/Changepassword';
 
 //Context 
 import { UserProvider } from './context/UserContext';
@@ -29,6 +30,7 @@ function App() {
             <Route path='/register' element={ <DevRegister /> }/>
             <Route path='/me' element={ <MyProfile /> }/>
             <Route path='/dev/edit-profile' element={ <EditProfileDev /> }/>
+            <Route path='/dev/change-password' element={ <Changepassword /> }/>
           </Routes>
         </Container>
       </UserProvider>
