@@ -33,6 +33,7 @@ export default function Changepassword({}) {
                 position: "bottom-right",
                 theme: "dark"
             });
+            navigate('/');
         })
         .catch((error) => {
             toast.error(error.response.data.message, {
@@ -41,7 +42,6 @@ export default function Changepassword({}) {
             });
         });
 
-        navigate('/');
     }
 
     return (
