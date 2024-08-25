@@ -3,7 +3,10 @@ import React, { useEffect, useState } from 'react';
 //API
 import axios from 'axios';
 
+//styles
 import styles from './Home.module.css';
+
+//components
 import CardContainer from '../../CardContainer/CardContainer';
 import Searchbar from '../../Searchbar/Searchbar';
 

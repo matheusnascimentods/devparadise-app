@@ -1,5 +1,6 @@
 import React from 'react'
 
+//styles
 import styles from './Badge.module.css';
 
 export default function Badge({data}) {

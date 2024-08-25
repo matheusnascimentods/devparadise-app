@@ -23,17 +23,59 @@ main {
 .navbar-toggler {
   border: none;
 }
-#offcanvasNavbar-expand-sm {
+.offcanvas {
   width: 100%;
   border: none;
-  background-color: #F5A904;
+  background-color: #21242A;
+  color: #ffffff;
   font-family: "Poppins", sans-serif;
+}
+.btn-close {
+  --bs-btn-close-bg: url('./assets/img/x.svg'); 
+}
+.offcanvas-header .offcanvas-title img {
+  width: 50px;
+  height: auto;
 }
 .offcanvas-title {
   font-weight: 800;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.offcanvas-title p {
+  margin: 0 0 0 10px;
+  color: #F5A904;
+  font-weight: 800;
+}
+.offcanvas-body ul {
+  margin: 0;
+  padding: 0;
 }
 .nav-link {
-  font-weight: 700;
-  color: #000000;
-  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 14px;
+}
+.rs-picker {
+  padding: 5px;
+}
+.rs-picker-input {
+  background-color: #31353E;
+  border: 0 none;
+  outline: 0;
+  color: #fff;
+}
+.rs-tag-text {
+  margin: 10px;
+}
+.rs-icon {
+  color: #ffffff;
+}
+.btn {
+  background: none;
+  border: 0;
+}
+.btn:hover {
+  background: none;
 }

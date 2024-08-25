@@ -1,60 +1,91 @@
-import { Link } from 'react-router-dom';
-import Logo from '../../assets/img/devparadise-logo.svg';
-import styles from './Header.module.css';
-
 //Context
 import { Context } from '../../context/UserContext';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
+
+//styles
+import Logo from '../../assets/img/devparadise-logo.svg';
+import styles from './Header.module.css';
+import defaultPfp from '../../assets/img/pfp-default.jpg';
 
 //Components
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import RoundedImage from '../RoundedImage/RoundedImage';
+import Nav from 'react-bootstrap/Nav';
+
+//API
+import axios from 'axios';
+import Divider from '../Divider/Divider';
 
 export default function Header() {
 
   const { authenticated, logout } = useContext(Context);
+  const [token] = useState(localStorage.getItem('token') || '');
+  const [user, setUser] = useState({});
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  useEffect(() => {
+    axios.get(`${import.meta.env.VITE_API_URL}/dev/get-user`, {
+      headers: {
+        Authorization: `Bearer ${JSON.parse(token)}`,
+      },
+    })
+    .then((response) => {
+      setUser(response.data.dev);
+    });
+  }, [token]);
 
   return (
     <header>
-        <div className={styles.container}>
-          <Link to='/'>
-            <img src={Logo} alt="Devparadise" />
-          </Link>
-          <Navbar key='sm' expand='sm'>
-          <Container fluid>
-            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-sm`} />
-            <Navbar.Offcanvas
-              id={`offcanvasNavbar-expand-sm`}
-              aria-labelledby={`offcanvasNavbarLabel-expand-sm`}
-              placement="end"
-            >
-              <Offcanvas.Header closeButton>
-                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-sm`}>
-                  Menu
-                </Offcanvas.Title>
-              </Offcanvas.Header>
-              <Offcanvas.Body>
-                <Nav className="justify-content-end flex-grow-1 pe-3">
-                  {authenticated ? (
-                  <>
-                    <Nav.Link className={styles.nav_item} href="/me">Meu perfil</Nav.Link>
-                    <Nav.Link href="/my-projects">Meus projetos</Nav.Link>
-                    <Nav.Link href="/login" onClick={logout}>Logout</Nav.Link>
-                  </>
-                  ) : (
-                    <> 
-                      <Nav.Link href="/login">Login</Nav.Link>
-                      <Nav.Link href="/register">Cadastrar</Nav.Link>
-                    </>
-                  )}
-                </Nav>
-              </Offcanvas.Body>
-            </Navbar.Offcanvas>
-          </Container>
-        </Navbar>
-        </div>
+      <div className={styles.container}>
+        <Link to='/'>
+          <img src={Logo} alt="Devparadise" />
+        </Link>
+        <Button onClick={handleShow} >
+          {user.image ? (
+            <RoundedImage src={`${import.meta.env.VITE_API_URL}/images/devs/${user.image}`} alt="Foto de perfil" />
+            ) : (
+            <RoundedImage src={defaultPfp} alt="Foto de perfil" />
+          )}
+        </Button>
+        <Offcanvas show={show} onHide={handleClose} placement='end'>
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title>
+              {user.image ? (
+                <RoundedImage src={`${import.meta.env.VITE_API_URL}/images/devs/${user.image}`} alt="Foto de perfil" />
+                ) : (
+                <RoundedImage src={defaultPfp} alt="Foto de perfil" />
+              )}
+              <p>@{user.username}</p>
+            </Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            <ul>
+              {authenticated ? (
+              <>
+                <Nav.Link className={styles.nav_item} href="/me">Meu perfil</Nav.Link>
+                <Nav.Link className={styles.nav_item} href="/dev/edit-profile">Editar pefil</Nav.Link>
+                <Divider />
+                <Nav.Link href="/dev/my-projects">Meus projetos</Nav.Link>
+                <Nav.Link href="/dev/create-project">Adicionar projeto</Nav.Link>
+                <Divider />
+                <Nav.Link href="/about">Sobre</Nav.Link>
+                <Nav.Link href="/login" onClick={logout}>Logout</Nav.Link>
+              </>
+              ) : (
+                <> 
+                  <Nav.Link href="/login">Login</Nav.Link>
+                  <Nav.Link href="/register">Cadastrar</Nav.Link>
+                </>
+              )}
+            </ul>
+          </Offcanvas.Body>
+        </Offcanvas>
+      </div>
     </header>
   )
 }

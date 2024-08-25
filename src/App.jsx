@@ -15,6 +15,7 @@ import Changepassword from './components/pages/ChangePassword/Changepassword';
 
 //Context 
 import { UserProvider } from './context/UserContext';
+import AddProject from './components/pages/AddProject/AddProject';
 //Components
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
             <Route path='/me' element={ <MyProfile /> }/>
             <Route path='/dev/edit-profile' element={ <EditProfileDev /> }/>
             <Route path='/dev/change-password' element={ <Changepassword /> }/>
+            <Route path='/dev/create-project' element={ <AddProject /> }/>
           </Routes>
         </Container>
       </UserProvider>

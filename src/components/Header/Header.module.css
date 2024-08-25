@@ -15,3 +15,7 @@ header {
     height: 35px;
     margin: 0;
 }
+.container button img {
+    width: 50px;
+    height: auto;
+}

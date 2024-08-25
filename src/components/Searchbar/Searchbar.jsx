@@ -1,7 +1,12 @@
 import React from 'react';
+
+//styles
 import styles from './Searchbar.module.css';
+
+//components
 import Input from '../form/Input';
 
+//Icons
 import { CgSearch } from "react-icons/cg";
 
 export default function Searchbar() {

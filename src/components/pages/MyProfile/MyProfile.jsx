@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 //API
 import axios from 'axios';
 
+//styles
 import styles from './MyProfile.module.css';
 import defaultPfp from '../../../assets/img/pfp-default.jpg';
+
+//Components
+import { Link } from 'react-router-dom';
+import Badges from '../../Badges/Badges';
+import SmallCardContainer from '../../SmallCardConstainer/SmallCardContainer';
+import RoundedImage from '../../RoundedImage/RoundedImage';
 
 //Icons
 import { RxGithubLogo } from "react-icons/rx";
 import { RiEditFill } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
 import { FaLinkedin } from "react-icons/fa";
-
-//Components
-import Badges from '../../Badges/Badges';
-import SmallCardContainer from '../../SmallCardConstainer/SmallCardContainer';
+import Divider from '../../Divider/Divider';
 
 export default function MyProfile({data}) {
 
@@ -47,9 +50,9 @@ export default function MyProfile({data}) {
             <div className={styles.info_sidebar}>
                 <div className={styles.pfp}>
                     {user.image ? (
-                        <img src={`${apiUrl}/images/devs/${user.image}`} alt="Foto de perfil" />
+                        <RoundedImage src={`${apiUrl}/images/devs/${user.image}`} alt="Foto de perfil" />
                     ) : (
-                        <img src={defaultPfp} alt="Foto de perfil" />
+                        <RoundedImage src={defaultPfp} alt="Foto de perfil" />
                     )}
                 </div>
                 <div className={styles.info}>
@@ -92,7 +95,7 @@ export default function MyProfile({data}) {
                         <p className={styles.name}>{user.name}</p>
                         <p className={styles.username}>@{user.username}</p>
                     </div>
-                    <div className={styles.divider}></div>
+                    <Divider />
                     <div className={styles.description}>
                         {user.description ? (
                             <p>{user.description}</p>

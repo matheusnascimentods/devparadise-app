@@ -1,11 +1,13 @@
-import React from 'react'
-import { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useContext, React } from 'react';
+
+//styles
+import styles from '../../form/Form.module.css';
 
 //Components
-import Input from '../../form/Input'
+import Input from '../../Form/Input'
+import InputTags from '../../Form/TagInput';
+import { Link } from 'react-router-dom';
 
-import styles from '../../form/Form.module.css';
 
 //Contexts
 import { Context } from '../../../context/UserContext';
@@ -17,6 +19,10 @@ export default function DevRegister() {
 
   function handleChange(e) {
     setUser({...user, [e.target.name]: e.target.value});
+  }
+
+  function handleCreate(e) {
+    user.skils = e;
   }
 
   function handleSubmit(e) {
@@ -32,6 +38,7 @@ export default function DevRegister() {
               <h1>Criar conta como DEV</h1>
               <Input text="Nome" type='text' name='name' placeholder='Informe o seu nome' handleOnChange={handleChange}/>
               <Input text="Username" type='text' name='username' placeholder='Escolha o seu username' handleOnChange={handleChange}/>
+              <InputTags text="Habilidades" name='skils' placeholder='Escolha as tecnologias que você domina' handleOnChange={handleCreate} />
               <Input text="E-mail" type='email' name='email' placeholder='Informe o seu e-mail' handleOnChange={handleChange}/>
               <Input text="CPF" type='number' name='cpf' placeholder='Informe o seu CPF' handleOnChange={handleChange}/>
               <Input text="Telefone" type='phone' name='phone' placeholder='Informe o seu Telefone' handleOnChange={handleChange}/>

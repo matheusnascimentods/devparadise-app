@@ -36,6 +36,13 @@ export default function useAuth() {
                 position: "bottom-right",
                 theme: "dark"
             });
+
+            if (!error.response.data.messag) {
+                toast.error('Preencha todos os campos.', {
+                    position: "bottom-right",
+                    theme: "dark"
+                });
+            }
         }
     }
 

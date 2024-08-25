@@ -1,15 +1,14 @@
-import { Link } from 'react-router-dom';
-
-//Components
-import Input from '../../form/Input'
-import Select from '../../form/Select'
-
-import styles from '../../form/Form.module.css';
-import img from '../../../assets/img/image.png'
-
 //Contexts
 import { Context } from '../../../context/UserContext';
 import { useContext, useState } from 'react';
+
+//styles
+import styles from '../../form/Form.module.css';
+import img from '../../../assets/img/image.png';
+
+//Components
+import Input from '../../form/Input';
+import { Link } from 'react-router-dom';
 
 export default function Login() {
 

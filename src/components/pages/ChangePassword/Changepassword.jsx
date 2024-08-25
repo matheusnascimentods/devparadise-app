@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import styles from '../../form/Form.module.css';
 
 //API
 import axios from 'axios';
+
+//styles
+import styles from '../../form/Form.module.css';
 
 //Components
 import Input from '../../form/Input';

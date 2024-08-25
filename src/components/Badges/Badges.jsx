@@ -1,6 +1,9 @@
 import React from 'react'
 
+//styles
 import styles from './Badges.module.css'
+
+//components
 import Badge from '../Badge/Badge'
 
 export default function Badges({list}) {
