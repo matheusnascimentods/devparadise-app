@@ -22,15 +22,13 @@ import Divider from '../../Divider/Divider';
 
 export default function MyProfile({data}) {
 
-    const apiUrl = "http://localhost:3000";
-
     const [user, setUser] = useState({});
     const [projects, setProjects] = useState([]);
     const [token] = useState(localStorage.getItem('token') || '');
     
     useEffect(() => {
         
-        axios.get(`${apiUrl}/dev/get-user`, {
+        axios.get(`${import.meta.env.VITE_API_URL}/dev/get-user`, {
             headers: {
                 Authorization: `Bearer ${JSON.parse(token)}`,
             },
@@ -50,7 +48,7 @@ export default function MyProfile({data}) {
             <div className={styles.info_sidebar}>
                 <div className={styles.pfp}>
                     {user.image ? (
-                        <RoundedImage src={`${apiUrl}/images/devs/${user.image}`} alt="Foto de perfil" />
+                        <RoundedImage src={`${import.meta.env.VITE_API_URL}/images/devs/${user.image}`} alt="Foto de perfil" />
                     ) : (
                         <RoundedImage src={defaultPfp} alt="Foto de perfil" />
                     )}

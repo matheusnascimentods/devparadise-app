@@ -18,7 +18,6 @@ import { Link } from 'react-router-dom';
 
 export default function EditProfileDev() {
 
-  const apiUrl = "http://localhost:3000";
   const [user, setUser] = useState({});
   const [preview, setPreview] = useState();
   const [token] = useState(localStorage.getItem('token') || '');
@@ -56,7 +55,7 @@ export default function EditProfileDev() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    await axios.patch(`${apiUrl}/dev`, user, {
+    await axios.patch(`${import.meta.env.VITE_API_URL}/dev`, user, {
       headers: {
         Authorization: `Bearer ${JSON.parse(token)}`
       }
@@ -78,7 +77,7 @@ export default function EditProfileDev() {
     if (preview) {
       let formData = new FormData();
       formData.append('image', preview);
-      await axios.patch(`${apiUrl}/dev/change-pfp`, formData, {
+      await axios.patch(`${import.meta.env.VITE_API_URL}/dev/change-pfp`, formData, {
         headers: {
           Authorization: `Bearer ${JSON.parse(token)}`,
           'Content-Type': 'multipart/form-data',
@@ -107,7 +106,7 @@ export default function EditProfileDev() {
                   src={
                     preview
                     ? URL.createObjectURL(preview)
-                    : `${apiUrl}/images/devs/${user.image}`
+                    : `${import.meta.env.VITE_API_URL}/images/devs/${user.image}`
                   }
                   alt={user.name}
                 />

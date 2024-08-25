@@ -14,7 +14,6 @@ import { toast } from 'react-toastify';
 export default function Changepassword({}) {
 
     const [data, setData] = useState({});
-    const apiUrl = "http://localhost:3000";
     const [token] = useState(localStorage.getItem('token') || '');
     const navigate = useNavigate();
 
@@ -25,7 +24,7 @@ export default function Changepassword({}) {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        await axios.patch(`${apiUrl}/dev/change-password`, data, {
+        await axios.patch(`${import.meta.env.VITE_API_URL}/dev/change-password`, data, {
             headers: {
                 Authorization: `Bearer ${JSON.parse(token)}`
             }

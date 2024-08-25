@@ -13,10 +13,9 @@ import Searchbar from '../../Searchbar/Searchbar';
 export default function Home() {
 
   const [projects, setProjects] = useState([]);
-  const apiUrl = "http://localhost:3000";
 
   useEffect(() => {
-    axios.get(`${apiUrl}/project`).then((response) => {
+    axios.get(`${import.meta.env.VITE_API_URL}/project`).then((response) => {
       setProjects(response.data.data);      
     })
   }, []);
