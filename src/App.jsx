@@ -12,10 +12,11 @@ import DevRegister from './components/pages/Auth/DevRegister';
 import MyProfile from './components/pages/MyProfile/MyProfile';
 import EditProfileDev from './components/pages/EditProfileDev/EditProfileDev';
 import Changepassword from './components/pages/ChangePassword/Changepassword';
+import AddProject from './components/pages/AddProject/AddProject';
+import MyProjects from './components/pages/MyProjects/MyProjects';
 
 //Context 
 import { UserProvider } from './context/UserContext';
-import AddProject from './components/pages/AddProject/AddProject';
 //Components
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
             <Route path='/dev/edit-profile' element={ <EditProfileDev /> }/>
             <Route path='/dev/change-password' element={ <Changepassword /> }/>
             <Route path='/dev/create-project' element={ <AddProject /> }/>
+            <Route path='/dev/my-projects' element={ <MyProjects /> }/>
           </Routes>
         </Container>
       </UserProvider>

@@ -22,7 +22,8 @@ export default function Home() {
 
   return (
     <section className={styles.home}>
-      <Searchbar />
+        <h2>Buscar</h2>
+        <Searchbar placeholder='Busque por um projeto ou por outro DEV' />
       <CardContainer data={projects} />
     </section>
   )

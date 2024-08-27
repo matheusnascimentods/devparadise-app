@@ -15,6 +15,13 @@ header {
     height: 35px;
     margin: 0;
 }
+.container button {
+    background: none;
+    border: 0;
+}
+.container button:hover {
+    background: none;
+}
 .container button img {
     width: 50px;
     height: auto;

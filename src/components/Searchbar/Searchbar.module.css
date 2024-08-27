@@ -6,12 +6,6 @@
     align-items: center;
     margin: 40px;
 }
-.searchbar h2 {
-    font-weight: 700;
-    color: var(--yellow);
-    font-size: 2.5em;
-    margin-bottom: 15px;
-}
 .input_container {
     position: relative;
     display: flex;
