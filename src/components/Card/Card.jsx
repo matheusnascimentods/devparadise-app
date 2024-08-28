@@ -6,7 +6,6 @@ import styles from './Card.module.css'
 import { Link } from 'react-router-dom';
 
 export default function Card({data}) {
-  console.log(data)
   return (
     <div className={styles.card}>
       <Link to={`/dev/project/${data._id}`}>

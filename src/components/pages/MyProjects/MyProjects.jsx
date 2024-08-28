@@ -30,7 +30,7 @@ export default function MyProjects() {
         .then((response) => {
             setProjects(response.data.projects)
         });
-    }, [token]);  
+    }, [token]);      
 
     return (
         <section className={styles.my_projects_section}>

@@ -1,3 +1,5 @@
+import { Suspense } from 'react';
+
 //Context
 import { Context } from '../../context/UserContext';
 import { useContext, useEffect, useState } from 'react';
@@ -28,16 +30,23 @@ export default function Header() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API_URL}/dev/get-user`, {
-      headers: {
-        Authorization: `Bearer ${JSON.parse(token)}`,
-      },
-    })
-    .then((response) => {
-      setUser(response.data.dev);
-    });
+  useEffect(() => {  
+    if (token) {     
+      axios.get(`${import.meta.env.VITE_API_URL}/dev/get-user`, {
+          headers: {
+              Authorization: `Bearer ${JSON.parse(token)}`,
+          },
+      })
+      .then((response) => {
+          setUser(response.data.dev);
+          setSrc(`${import.meta.env.VITE_API_URL}/images/devs/${user.image}`);
+      });
+      
+    }  
   }, [token]);
+
+  console.log(authenticated, user.image);
+  
 
   return (
     <header>
@@ -46,11 +55,13 @@ export default function Header() {
           <img src={Logo} alt="Devparadise" />
         </Link>
         <Button onClick={handleShow} >
+          <Suspense fallback={<p>Carregando...</p>}>
           {user.image ? (
             <RoundedImage src={`${import.meta.env.VITE_API_URL}/images/devs/${user.image}`} alt="Foto de perfil" />
-            ) : (
+          ) : (
             <RoundedImage src={defaultPfp} alt="Foto de perfil" />
           )}
+          </Suspense>
         </Button>
         <Offcanvas show={show} onHide={handleClose} placement='end'>
           <Offcanvas.Header closeButton>

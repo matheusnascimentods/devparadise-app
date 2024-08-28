@@ -2,8 +2,6 @@ import React from 'react'
 import styles from './SmallCard.module.css'
 
 export default function SmallCard({ data }) {
-  console.log(data);
-  
   return (
     <div className={styles.small_card}>
         <div className={styles.card_img}>

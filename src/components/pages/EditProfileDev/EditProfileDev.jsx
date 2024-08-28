@@ -37,19 +37,14 @@ export default function EditProfileDev() {
 
   function handleChange(e) {
     setUser({...user, [e.target.name]: e.target.value});
-    console.log(user);
   }
 
   function onFileChange(e) {
     setPreview(e.target.files[0]);
-    console.log(e.target.files);
-    
   }
 
   function handleCreate(value, item) {
     user.skils = value;
-    console.log(user);
-       
   }
   
   async function handleSubmit(e) {
