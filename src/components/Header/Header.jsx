@@ -29,6 +29,7 @@ export default function Header() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [src, setSrc] = useState('');
 
   useEffect(() => {  
     if (token) {     
@@ -39,13 +40,13 @@ export default function Header() {
       })
       .then((response) => {
           setUser(response.data.dev);
-          setSrc(`${import.meta.env.VITE_API_URL}/images/devs/${user.image}`);
+          setSrc(`${import.meta.env.VITE_API_URL}/images/devs/${response.data.dev.image}`);
       });
       
     }  
   }, [token]);
 
-  console.log(authenticated, user.image);
+  console.log(src);
   
 
   return (
