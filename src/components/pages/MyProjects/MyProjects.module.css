@@ -31,3 +31,8 @@
     background-color: #F5C605;
     transition: 1s all
 }
+.list_projects {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
