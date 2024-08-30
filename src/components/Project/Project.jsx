@@ -1,4 +1,5 @@
 import React from 'react'
+import { FaCircle } from "react-icons/fa";
 
 //styles
 import styles from './Project.module.css';
@@ -19,12 +20,22 @@ export default function Project({project, handleDelete}) {
     await handleDelete(project);
     setOpen(false);
   }
-
+  
   return (
     <>
     <div className={styles.project_item}>
       <div className={styles.info}>
         <span>{project.title}</span>
+        {!project.technologies || !Array.isArray(project.technologies) || project.technologies.length === 0 ? 
+        (<></>) : 
+        (
+          <div className={styles.technologies_container}>
+            <FaCircle color='ffb300' size={7} />
+            <ul>
+              {Array.from(project.technologies).map((technologie) => <li>{technologie}</li>)}
+            </ul>
+          </div>
+        )}
       </div>
       <Dropdown>
         <Dropdown.Toggle id="dropdown-basic" variant='success'>Opções</Dropdown.Toggle>

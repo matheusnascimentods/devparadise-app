@@ -40,6 +40,10 @@ export default function AddProject() {
         for (let i = 0; i < project[key].length; i++) {
           formData.append(`images`, project[key][i])
         }
+      } else if(key === 'technologies') {
+        for (let i = 0; i < project[key].length; i++) {
+          formData.append(`technologies`, project[key][i]);
+        }
       } else {
         formData.append(key, project[key]);
       }
