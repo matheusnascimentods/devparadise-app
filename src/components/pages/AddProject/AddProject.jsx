@@ -70,7 +70,6 @@ export default function AddProject() {
         theme: "dark"
       });
     });
-    
   }
 
   return (

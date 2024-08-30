@@ -46,9 +46,6 @@ export default function Header() {
     }  
   }, [token]);
 
-  console.log(src);
-  
-
   return (
     <header>
       <div className={styles.container}>

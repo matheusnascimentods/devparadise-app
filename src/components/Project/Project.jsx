@@ -42,7 +42,7 @@ export default function Project({project, handleDelete}) {
 
         <Dropdown.Menu>
           <Dropdown.Item onClick={handleOpen}>Excluir</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Editar</Dropdown.Item>
+          <Dropdown.Item href={`/dev/edit-project/${project._id}`}>Editar</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
     </div>
