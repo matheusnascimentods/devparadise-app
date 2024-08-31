@@ -26,14 +26,11 @@ export default function AddProject() {
 
   function handleCreate(value, item) {
     project.technologies = value;
-    console.log(project);
-    
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
     
-    console.log(project)
     let formData = new FormData();
     const projectFormData = await Object.keys(project).forEach((key) => {
       if (key === 'images') {

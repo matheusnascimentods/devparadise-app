@@ -22,42 +22,42 @@ export default function Project({project, handleDelete}) {
   }
   
   return (
-    <>
-    <div className={styles.project_item}>
-      <div className={styles.info}>
-        <span>{project.title}</span>
-        {!project.technologies || !Array.isArray(project.technologies) || project.technologies.length === 0 ? 
-        (<></>) : 
-        (
-          <div className={styles.technologies_container}>
-            <FaCircle color='ffb300' size={7} />
-            <ul>
-              {Array.from(project.technologies).map((technologie) => <li>{technologie}</li>)}
-            </ul>
-          </div>
-        )}
-      </div>
-      <Dropdown>
-        <Dropdown.Toggle id="dropdown-basic" variant='success'>Opções</Dropdown.Toggle>
+    <div>
+      <div className={styles.project_item}>
+        <div className={styles.info}>
+          <span>{project.title}</span>
+          {!project.technologies || !Array.isArray(project.technologies) || project.technologies.length === 0 ? 
+          (<></>) : 
+          (
+            <div className={styles.technologies_container}>
+              <FaCircle color='ffb300' size={7} />
+              <ul>
+                {Array.from(project.technologies).map((technologie) => <li key={technologie}>{technologie}</li>)}
+              </ul>
+            </div>
+          )}
+        </div>
+        <Dropdown>
+          <Dropdown.Toggle id="dropdown-basic" variant='success'>Opções</Dropdown.Toggle>
 
-        <Dropdown.Menu>
-          <Dropdown.Item onClick={handleOpen}>Excluir</Dropdown.Item>
-          <Dropdown.Item href={`/dev/edit-project/${project._id}`}>Editar</Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={handleOpen}>Excluir</Dropdown.Item>
+            <Dropdown.Item href={`/dev/edit-project/${project._id}`}>Editar</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
+      <Modal backdrop="static" role="alertdialog" open={open} onClose={handleClose} size="xs">
+        <Modal.Body>
+          <RemindIcon style={{ color: '#ffb300', fontSize: 24 }} />Realmente deseja excluir este projeto?</Modal.Body>
+        <Modal.Footer>
+          <Button onClick={handleOnClick} appearance="primary" key={project._id}>
+            Sim, excluir!
+          </Button>
+          <Button onClick={handleClose} appearance="subtle">
+            Cancelar
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
-    <Modal backdrop="static" role="alertdialog" open={open} onClose={handleClose} size="xs">
-      <Modal.Body>
-        <RemindIcon style={{ color: '#ffb300', fontSize: 24 }} />Realmente deseja excluir este projeto?</Modal.Body>
-      <Modal.Footer>
-        <Button onClick={handleOnClick} appearance="primary" key={project._id}>
-          Sim, excluir!
-        </Button>
-        <Button onClick={handleClose} appearance="subtle">
-          Cancelar
-        </Button>
-      </Modal.Footer>
-    </Modal>
-    </>
   )
 }

@@ -53,7 +53,7 @@ export default function EditProject() {
             formData.append(key, project[key]);
           }
         });
-    
+        
         formData.append('project', projectFormData);
         
         axios.patch(`${import.meta.env.VITE_API_URL}/project/${project._id}`, formData, {

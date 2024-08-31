@@ -66,7 +66,7 @@ export default function MyProjects() {
             </div>
             <Divider/>
             <div className={styles.list_projects}>
-                {Array.from(projects).map((project) => <Project project={project} handleDelete={handleDelete} key={project._id}/>)}
+                {Array.from(projects).map((project) => <Project project={project} key={project._id} handleDelete={handleDelete}/>)}
             </div>
         </section>
     )
