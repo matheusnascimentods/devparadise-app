@@ -32,3 +32,9 @@
     overflow: hidden;         /* Oculta o texto que ultrapassa o limite do card */
     text-overflow: ellipsis;
 }
+.author {
+    padding-left: 20px;
+}
+.author a {
+    color: var(--yellow);
+}

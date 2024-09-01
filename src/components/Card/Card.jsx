@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
+//API
+import axios from 'axios';
 
 import styles from './Card.module.css'
 
@@ -6,6 +9,15 @@ import styles from './Card.module.css'
 import { Link } from 'react-router-dom';
 
 export default function Card({data}) {
+  const [author, setAuthor] = useState({});
+
+  useEffect(() => {
+      axios.get(`${import.meta.env.VITE_API_URL}/dev?id=${data.devId}`)
+      .then((response) => {
+        setAuthor(response.data.data);
+      });
+  });
+  
   return (
     <div className={styles.card}>
       <Link to={`/dev/project/${data._id}`}>
@@ -17,6 +29,9 @@ export default function Card({data}) {
         <span>{data.title}</span>
         <p>{data.description}</p>
       </div>
+      <span className={styles.author}>
+        <Link to={`/dev/${data._id}`}>Feito por <span>@{author.username}</span></Link>
+      </span>
     </div>
   )
 }

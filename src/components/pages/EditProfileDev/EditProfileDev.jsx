@@ -40,7 +40,19 @@ export default function EditProfileDev() {
   }
 
   function onFileChange(e) {
-    setPreview(e.target.files[0]);
+    const file = e.target.files[0];
+
+    if(file) {
+      if (file.type.startsWith('image/')) {
+        setPreview(e.target.files[0]);
+        setUser({...user, image: e.target.files[0]});
+      } else {
+        toast.error('Envie um arquivo de imagem!', {
+          position: "bottom-right",
+          theme: "dark"
+        });
+      }
+    }
   }
 
   function handleCreate(value, item) {
@@ -49,8 +61,19 @@ export default function EditProfileDev() {
   
   async function handleSubmit(e) {
     e.preventDefault();
+    
+    let formData = new FormData();
+    Object.keys(user).forEach((key) => {
+      if (key === 'skils') {
+        for (let i = 0; i < user[key].length; i++) {
+          formData.append(`skils`, user[key][i]);          
+        }
+      } else {
+        formData.append(key, user[key]);
+      }
+    });
 
-    await axios.patch(`${import.meta.env.VITE_API_URL}/dev`, user, {
+    await axios.patch(`${import.meta.env.VITE_API_URL}/dev`, formData, {
       headers: {
         Authorization: `Bearer ${JSON.parse(token)}`
       }
@@ -69,25 +92,29 @@ export default function EditProfileDev() {
       });
     })
 
-    if (preview) {
-      let formData = new FormData();
-      formData.append('image', preview);
-      await axios.patch(`${import.meta.env.VITE_API_URL}/dev/change-pfp`, formData, {
-        headers: {
-          Authorization: `Bearer ${JSON.parse(token)}`,
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-      .then((response) => {
-        navigate('/me');
-      })
-      .catch((error) => {
-        toast.error(error.response.data.message, {
-          position: "bottom-right",
-          theme: "dark"
-        });
-      });
-    }
+    // if (preview) {
+    //   console.log();
+    //   if (preview.type === "image/png" || preview.type === "image/jpeg" || preview.type === "image/jpg" || preview.type === "image/jfif") {        
+    //     let formData = new FormData();
+    //     formData.append('image', preview);
+    //     await axios.patch(`${import.meta.env.VITE_API_URL}/dev/change-pfp`, formData, {
+    //       headers: {
+    //         Authorization: `Bearer ${JSON.parse(token)}`,
+    //         'Content-Type': 'multipart/form-data',
+    //       },
+    //     })
+    //     .then((response) => {
+    //       navigate('/me');
+    //     })
+    //     .catch((error) => {
+    //       toast.error(error.response.data.message, {
+    //         position: "bottom-right",
+    //         theme: "dark"
+    //       });
+    //     });
+    //   }
+      
+    // }
   }
 
   return (
