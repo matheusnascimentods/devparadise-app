@@ -21,6 +21,7 @@ export default function MyProjects() {
     const navigate = useNavigate();
     const [projects, setProjects] = useState({});
     const [token] = useState(localStorage.getItem('token') || '');
+    const [results, setResults] = useState('');
 
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_API_URL}/dev/my-projects`, {
@@ -54,17 +55,46 @@ export default function MyProjects() {
         });
     }
 
+    async function handleKeyDown(e) {
+        if (e.key === "Enter" && e.target.value !== "") {
+            let query = e.target.value;
+
+            await axios.get(`${import.meta.env.VITE_API_URL}/dev/my-projects?title=${query}`, {
+                headers: {
+                    Authorization: `Bearer ${JSON.parse(token)}`,
+                },
+            })
+            .then((response) => {
+                setProjects(response.data.data);
+                response.data.total > 1 ? setResults(`${response.data.total} Resultados encontrados`) : setResults(`${response.data.total} Resultado encontrado`);
+            });
+        }
+
+        if (e.target.value === "") {
+            axios.get(`${import.meta.env.VITE_API_URL}/dev/my-projects`, {
+                headers: {
+                    Authorization: `Bearer ${JSON.parse(token)}`,
+                },
+            })
+            .then((response) => {
+                setProjects(response.data.projects);
+                setResults('');
+            });
+        }
+    }
+
     return (
         <section className={styles.my_projects_section}>
             <h2>Meus projetos</h2>
             <div className={styles.search}>
-                <Searchbar id='searchbar' placeholder='Encontre um projeto'/>
+                <Searchbar id='searchbar' handleKeyDown={handleKeyDown} placeholder='Encontre um projeto'/>
                 <button className={styles.btn} onClick={() => navigate('/dev/create-project')}>
                     <MdCreateNewFolder size={20}/>
                     Novo
                 </button>
             </div>
             <Divider/>
+            <span className={styles.results}>{results}</span>
             <div className={styles.list_projects}>
                 {Array.from(projects).map((project) => <Project project={project} key={project._id} handleDelete={handleDelete}/>)}
             </div>
