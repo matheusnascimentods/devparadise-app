@@ -22,12 +22,17 @@ import Divider from '../../Divider/Divider';
 export default function Profile() {
     const {username} = useParams();
     const [user, setUser] = useState({});
-    const [project, setProjects] = useState([]);
+    const [projects, setProjects] = useState([]);
 
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_API_URL}/dev?username=${username}`)
         .then((response) => {
             setUser(response.data.data);          
+        });
+
+        axios.get(`${import.meta.env.VITE_API_URL}/dev/get-projects/${user._id}`)
+        .then((response) => {
+            setProjects(response.data.data);          
         });
     }, [username]);
     
