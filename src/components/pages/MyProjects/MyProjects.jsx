@@ -30,10 +30,11 @@ export default function MyProjects() {
             },
         })
         .then((response) => {
-            setProjects(response.data.projects)
+            setProjects(response.data.projects);
+            
         });
     }, [token]);      
-
+    
     async function handleDelete(project) {
         await axios.delete(`${import.meta.env.VITE_API_URL}/project/${project._id}`, {
             headers: {
@@ -45,7 +46,7 @@ export default function MyProjects() {
                 position: "bottom-right",
                 theme: "dark"
             });
-            window.location.reload();
+            setProjects(projects.filter(data => data._id !== project._id));
         })
         .catch((error) => {
             toast.error(error.data.message, {
