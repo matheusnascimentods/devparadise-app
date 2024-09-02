@@ -30,7 +30,7 @@ export default function Card({data}) {
         <p>{data.description}</p>
       </div>
       <span className={styles.author}>
-        <Link to={`/dev/${data._id}`}>Feito por <span>@{author.username}</span></Link>
+        <Link to={`/dev/${author.username}`}>Feito por <span>@{author.username}</span></Link>
       </span>
     </div>
   )

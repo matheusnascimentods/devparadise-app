@@ -4,41 +4,33 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 //styles
-import styles from './MyProfile.module.css';
+import styles from './Profile.module.css';
 import defaultPfp from '../../../assets/img/pfp-default.jpg';
 
 //Components
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Badges from '../../Badges/Badges';
 import SmallCardContainer from '../../SmallCardConstainer/SmallCardContainer';
 import RoundedImage from '../../RoundedImage/RoundedImage';
 
 //Icons
 import { RxGithubLogo } from "react-icons/rx";
-import { RiEditFill } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
 import { FaLinkedin } from "react-icons/fa";
 import Divider from '../../Divider/Divider';
 
-export default function MyProfile({data}) {
-
+export default function Profile() {
+    const {username} = useParams();
     const [user, setUser] = useState({});
-    const [projects, setProjects] = useState([]);
-    const [token] = useState(localStorage.getItem('token') || '');
-    
-    useEffect(() => {
-        
-        axios.get(`${import.meta.env.VITE_API_URL}/dev/get-user`, {
-            headers: {
-                Authorization: `Bearer ${JSON.parse(token)}`,
-            },
-        })
-        .then((response) => {
-            setUser(response.data.dev);
-            setProjects(response.data.projects)
-        });
-    }, [token]);
+    const [project, setProjects] = useState([]);
 
+    useEffect(() => {
+        axios.get(`${import.meta.env.VITE_API_URL}/dev?username=${username}`)
+        .then((response) => {
+            setUser(response.data.data);          
+        });
+    }, [username]);
+    
     return (
         <section className={styles.card}>
         <span>
@@ -54,12 +46,6 @@ export default function MyProfile({data}) {
                     )}
                 </div>
                 <div className={styles.info}>
-                    <button>
-                    <Link to="/dev/edit-profile">
-                        <RiEditFill size={25}/>
-                        Editar Perfil
-                    </Link>
-                    </button>
                     <h3>Informações</h3>
                     <div className={styles.contact}>
                         <ul>
