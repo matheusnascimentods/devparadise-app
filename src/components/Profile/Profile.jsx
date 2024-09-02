@@ -1,45 +1,27 @@
-import React, { useEffect, useState } from 'react';
-
-//API
-import axios from 'axios';
+import React, { useState } from 'react';
 
 //styles
 import styles from './Profile.module.css';
-import defaultPfp from '../../../assets/img/pfp-default.jpg';
+import defaultPfp from '../../assets/img/pfp-default.jpg';
 
-//Components
-import { Link, useParams } from 'react-router-dom';
-import Badges from '../../Badges/Badges';
-import SmallCardContainer from '../../SmallCardConstainer/SmallCardContainer';
-import RoundedImage from '../../RoundedImage/RoundedImage';
+//components
+import { Link } from 'react-router-dom';
+import RoundedImage from '../RoundedImage/RoundedImage';
+import Badges from '../Badges/Badges';
+import SmallCardContainer from '../SmallCardConstainer/SmallCardContainer';
+import Divider from '../Divider/Divider';
 
 //Icons
 import { RxGithubLogo } from "react-icons/rx";
+import { RiEditFill } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
 import { FaLinkedin } from "react-icons/fa";
-import Divider from '../../Divider/Divider';
 
-export default function Profile() {
-    const {username} = useParams();
-    const [user, setUser] = useState({});
-    const [projects, setProjects] = useState([]);
-
-    useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}/dev?username=${username}`)
-        .then((response) => {
-            setUser(response.data.data);          
-        });
-
-        axios.get(`${import.meta.env.VITE_API_URL}/dev/get-projects/${user._id}`)
-        .then((response) => {
-            setProjects(response.data.data);          
-        });
-    }, [username]);
-    
+export default function Profile({ user, projects, myProfile}) {
     return (
         <section className={styles.card}>
         <span>
-            <h1>Meu Perfil</h1>
+            {myProfile ? (<h1>Meu Perfil</h1>) : (<h1>Perfil de {user.username}</h1>)}
         </span>
         <div className={styles.card_info}>
             <div className={styles.info_sidebar}>
@@ -51,6 +33,16 @@ export default function Profile() {
                     )}
                 </div>
                 <div className={styles.info}>
+                    {myProfile == true ? (
+                        <>
+                            <button>
+                                <Link to="/dev/edit-profile">
+                                    <RiEditFill size={25}/>
+                                    Editar Perfil
+                                </Link>
+                            </button>
+                        </>
+                    ) : (<></>)}
                     <h3>Informações</h3>
                     <div className={styles.contact}>
                         <ul>
