@@ -22,11 +22,13 @@ export default function Card({data}) {
     <div className={styles.card}>
       <Link to={`/dev/project/${data._id}`}>
         <div className={styles.card_img}>
-          <img src={`http://localhost:3000/images/projects/${data.images[0]}`} alt="Imagem" />
+          <img src={`${import.meta.env.VITE_API_URL}/images/projects/${data.images[0]}`} alt="Imagem" />
         </div>
       </Link>
       <div className={styles.card_info}>
-        <span>{data.title}</span>
+        <Link to={`/dev/project/${data._id}`}>
+          <span>{data.title}</span>
+        </Link>
         <p>{data.description}</p>
       </div>
       <span className={styles.author}>

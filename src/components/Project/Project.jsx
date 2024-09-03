@@ -9,6 +9,7 @@ import 'rsuite/Modal/styles/index.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { Modal, ButtonToolbar, Button } from 'rsuite';
 import RemindIcon from '@rsuite/icons/legacy/Remind';
+import { Link } from 'react-router-dom';
 
 export default function Project({project, handleDelete}) {
   //modal
@@ -25,7 +26,9 @@ export default function Project({project, handleDelete}) {
     <div>
       <div className={styles.project_item}>
         <div className={styles.info}>
-          <span>{project.title}</span>
+          <Link to={`/dev/project/${project._id}`}>
+            <span>{project.title}</span>
+          </Link>
           {!project.technologies || !Array.isArray(project.technologies) || project.technologies.length === 0 ? 
           (<></>) : 
           (
