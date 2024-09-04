@@ -11,6 +11,11 @@ import 'rsuite/Carousel/styles/index.css';
 
 //components
 import { Carousel } from 'rsuite';
+import Badges from '../../Badges/Badges';
+import { Link } from 'react-router-dom';
+
+//Icons
+import { RxGithubLogo } from "react-icons/rx";
 
 export default function ProjectView() {
 
@@ -22,13 +27,13 @@ export default function ProjectView() {
     axios.get(`${import.meta.env.VITE_API_URL}/project?id=${id}`)
     .then((response) => {
       setProject(response.data.data);
-      if (project.images) {
-        setImages(response.data.data.images);
-      }
-    })
-  }, [id]);
+    });
 
-  
+    axios.get(`${import.meta.env.VITE_API_URL}/project/get-images/${id}`)
+    .then((response) => {
+      setImages(response.data.images);
+    });
+  }, [id]);
 
   return (
     <section className={styles.info_section}>
@@ -38,13 +43,29 @@ export default function ProjectView() {
           <span>Criado em {formatDate(project.createdAt)}</span>
         </div>
         <div className={styles.card_body}>
-          <div>
-            <Carousel autoplay className="custom-slider">
-              {images.map((data) => (
-                <img src={`${import.meta.env.VITE_API_URL}/images/projects/${data}`} alt="Imagem" />
-              ))}
-            </Carousel>
+          <div className={styles.card_carousel}>
+            {images ? (
+              <>
+                <Carousel autoplay className="custom-slider">
+                  {images.map((image) => (
+                    <img src={`${import.meta.env.VITE_API_URL}/images/projects/${image}`} alt='imagem' key={image}/>
+                  ))}
+                </Carousel>
+              </>
+            ) : (<></>)}
           </div>
+          {project.technologies ? (<Badges list={Array.from(project.technologies)} />) : (<></>)}
+          <p className={styles.description}><span>Descrição:</span> {project.description}</p>
+          <ul className={styles.links}>
+            {project.repository ? (
+              <li className={styles.github}>
+                <Link to={`${project.repository}`}>
+                    <RxGithubLogo color='FFFFFF' size={22} />
+                    <p>Ir para o Github</p>
+                </Link>
+              </li>
+            ) : (<></>)}
+          </ul>
         </div>
       </div>
     </section>
