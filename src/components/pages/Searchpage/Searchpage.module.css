@@ -1,0 +1,13 @@
+.searchpage_container {
+    max-width: 750px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.searchpage_container h2 {
+    font-size: 2em;
+}
+.searchpage_container div {
+    width: 100%;
+}

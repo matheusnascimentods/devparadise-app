@@ -17,6 +17,7 @@ import MyProjects from './components/pages/MyProjects/MyProjects';
 import EditProject from './components/pages/EditProject/EditProject';
 import UserProfile from './components/pages/UserProfile/UserProfile';
 import ProjectView from './components/pages/ProjectView/ProjectView';
+import Searchpage from './components/pages/Searchpage/Searchpage';
 
 //Context 
 import { UserProvider } from './context/UserContext';
@@ -33,6 +34,7 @@ function App() {
             <Route path='/login' element={ <Login /> }/>
             <Route path='/register' element={ <DevRegister /> }/>
             <Route path='/me' element={ <MyProfile /> }/>
+            <Route path='/search' element={ <Searchpage /> }/>
             <Route path='/dev/:username' element={<UserProfile /> }/>
             <Route path='/dev/edit-profile' element={ <EditProfileDev /> }/>
             <Route path='/dev/change-password' element={ <Changepassword /> }/>

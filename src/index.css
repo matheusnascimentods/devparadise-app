@@ -10,6 +10,25 @@
 :root {
   --yellow: #F5A904; 
 }
+/* Scroll */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #21242A;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 body {
   background-color: #15171a;
   color: #fff;
@@ -25,69 +44,4 @@ h2 {
   color: var(--yellow);
   font-size: 2.5em;
   margin-bottom: 15px;
-}
-.navbar-toggler {
-  border: none;
-}
-.offcanvas {
-  width: 100%;
-  border: none;
-  background-color: #21242A;
-  color: #ffffff;
-  font-family: "Poppins", sans-serif;
-}
-.btn-close {
-  --bs-btn-close-bg: url('./assets/img/x.svg'); 
-}
-.offcanvas-header .offcanvas-title img {
-  width: 50px;
-  height: auto;
-}
-.offcanvas-title {
-  font-weight: 800;
-  width: 100%;
-  display: flex;
-  align-items: center;
-}
-.offcanvas-title p {
-  margin: 0 0 0 10px;
-  color: #F5A904;
-  font-weight: 800;
-}
-.offcanvas-body ul {
-  margin: 0;
-  padding: 0;
-}
-.nav-link {
-  font-weight: 600;
-  color: #ffffff;
-  font-size: 14px;
-}
-.rs-picker {
-  padding: 5px;
-}
-.rs-picker-input {
-  background-color: #31353E;
-  border: 0 none;
-  outline: 0;
-  color: #fff;
-}
-.rs-tag-text {
-  margin: 10px;
-}
-.rs-icon {
-  color: #ffffff;
-}
-.rs-modal-content {
-  background-color: #21242A;
-  color: #ffffff;
-}
-.rs-btn-subtle {
-  color:#ffffff
-}
-.btn::before {
-  background-color: var(--yellow);
-  color: #000000;
-  border: 0 none;
-  transition: 1s all
 }

@@ -97,7 +97,7 @@ export default function MyProjects() {
             <Divider/>
             <span className={styles.results}>{results}</span>
             <div className={styles.list_projects}>
-                {Array.from(projects).map((project) => <Project project={project} key={project._id} handleDelete={handleDelete}/>)}
+                {Array.from(projects).map((project) => <Project project={project} key={project._id} handleDelete={handleDelete} myProject={true} />)}
             </div>
         </section>
     )
