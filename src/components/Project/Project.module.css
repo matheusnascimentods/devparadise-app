@@ -37,3 +37,11 @@
 .technologies_container ul li:first-child {
     margin: 0;
 }
+.pfp {
+    display: flex;
+    justify-content: end;
+}
+.pfp img {
+    height: 50px;
+    width: 50px;
+}

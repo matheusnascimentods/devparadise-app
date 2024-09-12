@@ -14,6 +14,7 @@ import Searchbar from '../../Searchbar/Searchbar';
 import { Tabs, Placeholder } from 'rsuite';
 import Divider from '../../Divider/Divider';
 import Project from '../../Project/Project';
+import ProfileCard from '../../ProfileCard/ProfileCard';
 
 export default function Searchpage() {
     const [searchParams] = useSearchParams()
@@ -21,6 +22,7 @@ export default function Searchpage() {
     const navigate = useNavigate();
 
     const [projects, setProjects] = useState([]);
+
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
@@ -28,13 +30,14 @@ export default function Searchpage() {
         axios.get(`${import.meta.env.VITE_API_URL}/project?title=${query}`)
         .then((response) => {
             setProjects(response.data.data);  
+            set
         })
         .catch((error) => {
             setProjects([]);
         });   
         
         //Get users
-        axios.get(`${import.meta.env.VITE_API_URL}/dev?username=${query}`)
+        axios.get(`${import.meta.env.VITE_API_URL}/dev?name=${query}`)
         .then((response) => {
             setUsers(response.data.data);
         })
@@ -45,14 +48,28 @@ export default function Searchpage() {
 
     async function handleKeyDown(e) {
         if (e.key === "Enter" && e.target.value !== "") {
-          navigate(`/search?q=${e.target.value}`);
+            axios.get(`${import.meta.env.VITE_API_URL}/project?title=${e.target.value}`)
+            .then((response) => {
+                setProjects(response.data.data);  
+            })
+            .catch((error) => {
+                setProjects([]);
+            });   
+            
+            //Get users
+            axios.get(`${import.meta.env.VITE_API_URL}/dev?name=${e.target.value}`)
+            .then((response) => {
+                setUsers(response.data.data);
+            })
+            .catch((error) => {
+                setUsers([]);
+            });
         }
     }
 
-    async function handleDelete(e) {
-        console.log('vasco')
-    }   
-
+    Array.from(users).map((user) => {
+        console.log(user)
+    });
     return (
         <section className={styles.searchpage_container}>
             <h2>Resultados para {query}</h2>
@@ -60,11 +77,15 @@ export default function Searchpage() {
             <Tabs defaultActiveKey="1" appearance="pills">
                 <Tabs.Tab eventKey="1" title="Projetos">
                     {projects ? (
-                        Array.from(projects).map((project) => <Project project={project} key={project._id} handleDelete={handleDelete} myProject={false}/>)
-                    ) : (<p></p>)}
+                        Array.from(projects).map((project) => <Project project={project} key={project._id}  myProject={false}/>)
+                    ) : (<p>Nada encontrado</p>)}
                 </Tabs.Tab>
                 <Tabs.Tab eventKey="2" title="Desenvolvedores">
-                    <p>Desenvolvedores</p>
+                    <div className={styles.users}>
+                        {users ? (
+                            Array.from(users).map((user) => <ProfileCard user={user} />)
+                        ) : (<p>Nada encontrado</p>)}
+                    </div>
                 </Tabs.Tab>
             </Tabs>
         </section>

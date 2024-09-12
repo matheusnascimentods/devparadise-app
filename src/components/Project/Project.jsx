@@ -1,21 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaCircle } from "react-icons/fa";
 
 //styles
 import styles from './Project.module.css';
 import 'rsuite/Modal/styles/index.css';
+import defaultPfp from '../../assets/img/pfp-default.jpg';
+
+//API
+import axios from 'axios';
 
 //components
 import Dropdown from 'react-bootstrap/Dropdown';
 import { Modal, ButtonToolbar, Button } from 'rsuite';
 import RemindIcon from '@rsuite/icons/legacy/Remind';
 import { Link } from 'react-router-dom';
+import RoundedImage from '../RoundedImage/RoundedImage';
 
 export default function Project({project, handleDelete, myProject}) {
   //modal
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    axios.get(`${import.meta.env.VITE_API_URL}/dev?id=${project.devId}`)
+    .then((response) => {
+      setUser(response.data.data);
+    });
+  }, []);
 
   async function handleOnClick() {
     await handleDelete(project);
@@ -76,11 +89,22 @@ export default function Project({project, handleDelete, myProject}) {
               (<></>) : 
               (
               <div className={styles.technologies_container}>
-              <FaCircle color='ffb300' size={7} />
-              <ul>
-              {Array.from(project.technologies).map((technologie) => <li key={technologie}>{technologie}</li>)}
-              </ul>
+                <FaCircle color='ffb300' size={7} />
+                <ul>
+                  {Array.from(project.technologies).map((technologie) => <li key={technologie}>{technologie}</li>)}
+                </ul>
               </div>
+              )}
+            </div>
+            <div className={styles.pfp}>
+              {user.image ? (
+                <Link to={`/dev/${user.username}`}>
+                  <RoundedImage src={`${import.meta.env.VITE_API_URL}/images/devs/${user.image}`} alt="Foto de perfil" />
+                </Link>
+              ) : (
+                <Link to={`/dev/${user.username}`}>
+                  <RoundedImage src={defaultPfp} alt="Foto de perfil" />
+                </Link>
               )}
             </div>
           </div>
