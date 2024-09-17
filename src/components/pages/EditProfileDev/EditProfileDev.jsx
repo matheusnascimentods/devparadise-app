@@ -91,30 +91,6 @@ export default function EditProfileDev() {
         theme: "dark"
       });
     })
-
-    // if (preview) {
-    //   console.log();
-    //   if (preview.type === "image/png" || preview.type === "image/jpeg" || preview.type === "image/jpg" || preview.type === "image/jfif") {        
-    //     let formData = new FormData();
-    //     formData.append('image', preview);
-    //     await axios.patch(`${import.meta.env.VITE_API_URL}/dev/change-pfp`, formData, {
-    //       headers: {
-    //         Authorization: `Bearer ${JSON.parse(token)}`,
-    //         'Content-Type': 'multipart/form-data',
-    //       },
-    //     })
-    //     .then((response) => {
-    //       navigate('/me');
-    //     })
-    //     .catch((error) => {
-    //       toast.error(error.response.data.message, {
-    //         position: "bottom-right",
-    //         theme: "dark"
-    //       });
-    //     });
-    //   }
-      
-    // }
   }
 
   return (

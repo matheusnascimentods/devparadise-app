@@ -2,9 +2,6 @@
     padding: 5px;
     border-radius: 5px;
     background-color: #F5A904;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin: 5px;
     transition: 1s all;
 }

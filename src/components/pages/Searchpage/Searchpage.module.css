@@ -11,9 +11,6 @@
 .searchpage_container div {
     width: 100%;
 }
-.users {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+.searchpage_container div div div .results {
+    margin-bottom: 1em;
 }
