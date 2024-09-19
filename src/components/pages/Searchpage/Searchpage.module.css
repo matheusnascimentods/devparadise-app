@@ -14,3 +14,8 @@
 .searchpage_container div div div .results {
     margin-bottom: 1em;
 }
+.searchpage_container h4 {
+    margin-bottom: 2em;
+    color: var(--yellow);
+    font-weight: 800;
+}

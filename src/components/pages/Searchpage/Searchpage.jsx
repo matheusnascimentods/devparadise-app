@@ -22,6 +22,7 @@ export default function Searchpage() {
 
     const [projects, setProjects] = useState({});
     const [users, setUsers] = useState([]);
+    const [defaultActiveKey, setDefaultActiveKey] = useState("1");
 
     useEffect(() => {
         axios.all([
@@ -31,6 +32,20 @@ export default function Searchpage() {
         .then(axios.spread((projectsResponse, usersResponse) => {
             setProjects(projectsResponse.data);
             setUsers(usersResponse.data);
+
+            if (projects.total > 0 && users.total == 0) {
+                setDefaultActiveKey("1");
+            }
+
+            if (users.total > 0 && projects.total == 0) {
+                setDefaultActiveKey("2");
+            }
+
+            if (users.total > 0 && projects.total > 0) {
+                setDefaultActiveKey("1");
+            }
+
+            console.log(defaultActiveKey)
         }));
     });
     
@@ -39,27 +54,40 @@ export default function Searchpage() {
             navigate(`/search?q=${e.target.value}`);
         }
     }
-
-    console.log('projetos', projects.total);
-    console.log('usesr', users.total);
     
+
+    const c = "2";
 
     return (
         <section className={styles.searchpage_container}>
+            {console.log(String(defaultActiveKey))}
             <h2>Resultados encontrados para {query}</h2>
             <Searchbar placeholder='Busque por um projeto ou por outro DEV' handleKeyDown={handleKeyDown} />
             <Tabs defaultActiveKey="1" appearance="pills">
-                {projects.total > 0 && users.total === 0 ? (                    
-                    <Tabs.Tab eventKey="1" title="Projetos">
-                        {Array.from(projects.data).map((project) => <Project project={project} key={project._id}  myProject={false}/>)}
-                    </Tabs.Tab>
-                ) : (<></>)}
-                {users.total > 0 && projects.total === 0 ? (
-                    <Tabs.Tab eventKey="2" title="Desenvolvedores">
-                        {Array.from(users.data).map((user) => <ProfileCard user={user} />)}
-                    </Tabs.Tab>
-                ) : (<></>)}
-
+                <Tabs.Tab eventKey="1" title="Todos">
+                    {users.total > 0 ? (
+                        <>
+                            <h4>Usuarios</h4>
+                            {Array.from(users.data).map((user) => <ProfileCard user={user} />)}
+                        </>
+                    ) : (
+                        <p>Nada encontrado</p>
+                    )}
+                </Tabs.Tab>
+                <Tabs.Tab eventKey="2" title="Projetos">
+                    {projects.total > 0  ? (
+                        Array.from(projects.data).map((project) => <Project project={project} key={project._id}  myProject={false}/>)
+                    ) : (
+                        <p>Nada encontrado</p>
+                    )}
+                </Tabs.Tab>
+                <Tabs.Tab eventKey="3" title="Desenvolvedores">
+                    {users.total > 0 ? (
+                        Array.from(users.data).map((user) => <ProfileCard user={user} />)
+                    ) : (
+                        <p>Nada encontrado</p>
+                    )}
+                </Tabs.Tab>
             </Tabs>
         </section>
     )

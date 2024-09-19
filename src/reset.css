@@ -76,8 +76,11 @@
 .rs-tabs .rs-nav button {
     padding: .7em;
 }
-.rs-nav button:first-child {
+.rs-tabs .rs-nav button {
     margin-right: 1em;
+}
+.rs-tabs .rs-nav button:nth-child(3) {
+    margin-right: 0;
 }
 .rs-tabs .rs-nav .rs-nav-item-active {
     background-color: var(--yellow);
