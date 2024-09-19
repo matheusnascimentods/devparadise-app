@@ -44,7 +44,7 @@ export default function Header() {
       });
       
     }  
-  }, [token]);
+  });
 
   return (
     <header>
