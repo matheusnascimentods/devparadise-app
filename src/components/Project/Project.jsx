@@ -24,7 +24,7 @@ export default function Project({project, handleDelete, myProject}) {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API_URL}/dev?id=${project.devId}`)
+    axios.get(`${import.meta.env.VITE_API_URL}/dev/get-by-id/${project.devId}`)
     .then((response) => {
       setUser(response.data.data);
     });

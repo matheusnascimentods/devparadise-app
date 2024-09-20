@@ -13,7 +13,7 @@ export default function UserProfile() {
     const [projects, setProjects] = useState([]);
     
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}/dev?username=${username}`)
+        axios.get(`${import.meta.env.VITE_API_URL}/dev/get-by-username/${username}`)
         .then((response) => {
             setUser(response.data.data);
             setProjects(response.data.projects);

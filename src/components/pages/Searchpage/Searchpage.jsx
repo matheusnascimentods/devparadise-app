@@ -25,11 +25,10 @@ export default function Searchpage() {
 
     useEffect(() => {
         axios.all([
-            axios.get(`${import.meta.env.VITE_API_URL}/project?title=${query}`),
-            axios.get(`${import.meta.env.VITE_API_URL}/dev/search?q=${query}`),
+            axios.get(`${import.meta.env.VITE_API_URL}/project?q=${query}`),
+            axios.get(`${import.meta.env.VITE_API_URL}/dev?q=${query}`),
         ])
         .then(axios.spread((projectsResponse, usersResponse) => {
-            console.log(usersResponse.data)
             setProjects(projectsResponse.data);
             setUsers(usersResponse.data);
         }));
