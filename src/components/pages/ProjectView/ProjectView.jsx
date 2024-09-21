@@ -24,7 +24,7 @@ export default function ProjectView() {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API_URL}/project?id=${id}`)
+    axios.get(`${import.meta.env.VITE_API_URL}/project/get-by-id/${id}`)
     .then((response) => {
       setProject(response.data.data);
     });

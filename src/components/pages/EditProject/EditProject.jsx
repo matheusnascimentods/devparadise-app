@@ -17,9 +17,10 @@ export default function EditProject() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}/get-by-id/${id}`)
+        axios.get(`${import.meta.env.VITE_API_URL}/project/get-by-id/${id}`)
         .then((response) => {
             setProject(response.data.data);
+            console.log(project)
         })
     }, [token]);
 
@@ -87,6 +88,7 @@ export default function EditProject() {
                 <Input text="Imagens do   projeto" type='file' name='images' handleOnChange={onFileChange} multiple={true}/>
                 <InputTags text="Tecnologias" name='technologies' placeholder='Escolha as tecnologias usadas na projeto' handleOnChange={handleCreate} />
                 <Input text="Repositório" type='url' name='repository' placeholder='Caso tenha um repositório desse projeto informe' handleOnChange={handleChange} value={project.repository || ''}/>
+                <Input text="Pagina do projeto" type='url' name='link' placeholder='Caso tenha uma pagina desse projeto informe' handleOnChange={handleChange} value={project.link}/>
                 <input type="submit" value="Atualizar" />
 
             </form>

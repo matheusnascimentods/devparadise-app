@@ -79,6 +79,7 @@ export default function AddProject() {
             <Input text="Imagens do   projeto" type='file' name='images' handleOnChange={onFileChange} multiple={true}/>
             <InputTags text="Tecnologias" name='technologies' placeholder='Escolha as tecnologias usadas na projeto' handleOnChange={handleCreate} />
             <Input text="Repositório" type='url' name='repository' placeholder='Caso tenha um repositório desse projeto informe' handleOnChange={handleChange} />
+            <Input text="Pagina do projeto" type='url' name='link' placeholder='Caso tenha uma pagina desse projeto informe' handleOnChange={handleChange} />
             <input type="submit" value="Adicionar projeto" />
 
           </form>

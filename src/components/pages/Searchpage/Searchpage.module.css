@@ -19,3 +19,6 @@
     color: var(--yellow);
     font-weight: 800;
 }
+.results_container > div:first-child  {
+    margin-bottom: 4em;
+}

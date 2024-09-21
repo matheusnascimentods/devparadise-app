@@ -60,7 +60,7 @@ export default function MyProjects() {
         if (e.key === "Enter" && e.target.value !== "") {
             let query = e.target.value;
 
-            await axios.get(`${import.meta.env.VITE_API_URL}/dev/my-projects?title=${query}`, {
+            await axios.get(`${import.meta.env.VITE_API_URL}/dev/my-projects?q=${query}`, {
                 headers: {
                     Authorization: `Bearer ${JSON.parse(token)}`,
                 },
