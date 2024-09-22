@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
 
 //styles
-import styles from './Searchpage.module.css';
+import styles from './Search.module.css';
 import 'rsuite/Tabs/styles/index.css';
 
 //API
@@ -15,7 +15,7 @@ import { Tabs, Placeholder } from 'rsuite';
 import Project from '../../Project/Project';
 import ProfileCard from '../../ProfileCard/ProfileCard';
 
-export default function Searchpage() {
+export default function Search() {
     const [searchParams] = useSearchParams()
     let query = searchParams.get('q');
     const navigate = useNavigate();

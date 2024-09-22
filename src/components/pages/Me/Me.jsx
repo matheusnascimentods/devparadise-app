@@ -5,7 +5,7 @@ import axios from 'axios';
 import Profile from '../../Profile/Profile';
 
 //styles
-export default function MyProfile({data}) {
+export default function Me({data}) {
 
     const [user, setUser] = useState({});
     const [projects, setProjects] = useState([]);

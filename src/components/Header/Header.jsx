@@ -88,7 +88,7 @@ export default function Header() {
               ) : (
                 <> 
                   <Nav.Link href="/login">Login</Nav.Link>
-                  <Nav.Link href="/register">Cadastrar</Nav.Link>
+                  <Nav.Link href="/signup">Cadastrar</Nav.Link>
                 </>
               )}
             </ul>

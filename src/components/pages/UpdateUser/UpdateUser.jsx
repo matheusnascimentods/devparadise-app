@@ -16,7 +16,7 @@ import RoundedImage from '../../RoundedImage/RoundedImage';
 import InputTags from '../../Form/TagInput';
 import { Link } from 'react-router-dom';
 
-export default function EditProfileDev() {
+export default function UpdateUser() {
 
   const [user, setUser] = useState({});
   const [preview, setPreview] = useState();

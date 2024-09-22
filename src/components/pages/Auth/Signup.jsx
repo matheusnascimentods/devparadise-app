@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 //Contexts
 import { Context } from '../../../context/UserContext';
 
-export default function DevRegister() {
+export default function Signup() {
 
   const [user, setUser] = useState({});
   const {register} = useContext(Context);

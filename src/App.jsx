@@ -7,18 +7,18 @@ import { ToastContainer } from 'react-toastify';
 
 //Pages
 import Home from './components/pages/Home/Home';
+import Search from './components/pages/Search/Search';
 import Login from './components/pages/Auth/Login';
-import DevRegister from './components/pages/Auth/DevRegister';
-import MyProfile from './components/pages/MyProfile/MyProfile';
-import EditProfileDev from './components/pages/EditProfileDev/EditProfileDev';
-import Changepassword from './components/pages/ChangePassword/Changepassword';
-import AddProject from './components/pages/AddProject/AddProject';
-import MyProjects from './components/pages/MyProjects/MyProjects';
-import EditProject from './components/pages/EditProject/EditProject';
-import UserProfile from './components/pages/UserProfile/UserProfile';
-import ProjectView from './components/pages/ProjectView/ProjectView';
-import Searchpage from './components/pages/Searchpage/Searchpage';
+import Signup from './components/pages/Auth/Signup';
+import Me from './components/pages/Me/Me';
+import UpdateUser from './components/pages/UpdateUser/UpdateUser';
 import DeleteUser from './components/pages/DeleteUser/DeleteUser';
+import Changepassword from './components/pages/ChangePassword/Changepassword';
+import MyProjects from './components/pages/MyProjects/MyProjects';
+import AddProject from './components/pages/AddProject/AddProject';
+import EditProject from './components/pages/EditProject/EditProject';
+import ProjectView from './components/pages/ProjectView/ProjectView';
+import User from './components/pages/User/User';
 
 //Context 
 import { UserProvider } from './context/UserContext';
@@ -32,18 +32,18 @@ function App() {
         <Container>
           <Routes>
             <Route path='/' element={ <Home /> }/>
-            <Route path='/search' element={ <Searchpage /> }/>
+            <Route path='/search' element={ <Search /> }/>
             <Route path='/login' element={ <Login /> }/>
-            <Route path='/register' element={ <DevRegister /> }/>
-            <Route path='/me' element={ <MyProfile /> }/>
-            <Route path='/me/update' element={ <EditProfileDev /> }/>
+            <Route path='/signup' element={ <Signup /> }/>
+            <Route path='/me' element={ <Me /> }/>
+            <Route path='/me/update' element={ <UpdateUser /> }/>
             <Route path='/me/delete' element={ <DeleteUser /> }/>
             <Route path='/me/changePassword' element={ <Changepassword /> }/>
             <Route path='/me/projects' element={ <MyProjects /> }/>
             <Route path='/me/projects/new' element={ <AddProject /> }/>
             <Route path='/me/projects/update/:id' element={ <EditProject /> }/>
             <Route path='/projects/:id' element={ <ProjectView /> }/>
-            <Route path='/user/:username' element={<UserProfile /> }/>
+            <Route path='/user/:username' element={<User /> }/>
           </Routes>
         </Container>
       </UserProvider>

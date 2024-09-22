@@ -7,7 +7,7 @@ import axios from 'axios';
 //components
 import Profile from '../../Profile/Profile';
 
-export default function UserProfile() {
+export default function User() {
     const {username} = useParams();
     const [user, setUser] = useState({});
     const [projects, setProjects] = useState([]);

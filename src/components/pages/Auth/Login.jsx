@@ -39,7 +39,7 @@ export default function Login() {
           <Input text="Senha" type='password' name='password' placeholder='Informe sua senha' handleOnChange={handleChange}/>
           <input type="submit" value="Login" />
           <p className={styles.form_span}>
-              Não tem conta? <Link to='/register'>Clique aqui.</Link>
+              Não tem conta? <Link to='/signup'>Clique aqui.</Link>
           </p>
         </form>
       </div>
