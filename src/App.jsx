@@ -32,18 +32,18 @@ function App() {
         <Container>
           <Routes>
             <Route path='/' element={ <Home /> }/>
+            <Route path='/search' element={ <Searchpage /> }/>
             <Route path='/login' element={ <Login /> }/>
             <Route path='/register' element={ <DevRegister /> }/>
             <Route path='/me' element={ <MyProfile /> }/>
-            <Route path='/search' element={ <Searchpage /> }/>
-            <Route path='/dev/:username' element={<UserProfile /> }/>
-            <Route path='/dev/edit-profile' element={ <EditProfileDev /> }/>
-            <Route path='/dev/change-password' element={ <Changepassword /> }/>
-            <Route path='/dev/delete-account' element={ <DeleteUser /> }/>
-            <Route path='/dev/create-project' element={ <AddProject /> }/>
-            <Route path='/dev/project/:id' element={ <ProjectView /> }/>
-            <Route path='/dev/edit-project/:id' element={ <EditProject /> }/>
-            <Route path='/dev/my-projects' element={ <MyProjects /> }/>
+            <Route path='/me/update' element={ <EditProfileDev /> }/>
+            <Route path='/me/delete' element={ <DeleteUser /> }/>
+            <Route path='/me/changePassword' element={ <Changepassword /> }/>
+            <Route path='/me/projects' element={ <MyProjects /> }/>
+            <Route path='/me/projects/new' element={ <AddProject /> }/>
+            <Route path='/me/projects/update/:id' element={ <EditProject /> }/>
+            <Route path='/projects/:id' element={ <ProjectView /> }/>
+            <Route path='/user/:username' element={<UserProfile /> }/>
           </Routes>
         </Container>
       </UserProvider>

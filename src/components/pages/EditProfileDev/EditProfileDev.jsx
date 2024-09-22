@@ -121,10 +121,10 @@ export default function EditProfileDev() {
             <input type="submit" value="Confirmar alterações" />
             <div className={styles.links}>
               <p className={styles.form_span}>
-                <Link to='/dev/change-password'>Trocar senha</Link>
+                <Link to='/me/changePassword'>Trocar senha</Link>
               </p>
               <p className={styles.form_span}>
-                <Link to='/dev/delete-account'>Excluir conta</Link>
+                <Link to='/me/delete'>Excluir conta</Link>
               </p>
             </div>
           </form>

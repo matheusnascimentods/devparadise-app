@@ -89,7 +89,7 @@ export default function MyProjects() {
             <h2>Meus projetos</h2>
             <div className={styles.search}>
                 <Searchbar id='searchbar' handleKeyDown={handleKeyDown} placeholder='Encontre um projeto'/>
-                <button className={styles.btn} onClick={() => navigate('/dev/create-project')}>
+                <button className={styles.btn} onClick={() => navigate('/me/projects/new')}>
                     <MdCreateNewFolder size={20}/>
                     Novo
                 </button>

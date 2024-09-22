@@ -77,10 +77,10 @@ export default function Header() {
               {authenticated ? (
               <>
                 <Nav.Link className={styles.nav_item} href="/me">Meu perfil</Nav.Link>
-                <Nav.Link className={styles.nav_item} href="/dev/edit-profile">Editar pefil</Nav.Link>
+                <Nav.Link className={styles.nav_item} href="/me/update">Editar pefil</Nav.Link>
                 <Divider />
-                <Nav.Link href="/dev/my-projects">Meus projetos</Nav.Link>
-                <Nav.Link href="/dev/create-project">Adicionar projeto</Nav.Link>
+                <Nav.Link href="/me/projects">Meus projetos</Nav.Link>
+                <Nav.Link href="/me/projects/new">Adicionar projeto</Nav.Link>
                 <Divider />
                 <Nav.Link href="/about">Sobre</Nav.Link>
                 <Nav.Link href="/login" onClick={logout}>Logout</Nav.Link>

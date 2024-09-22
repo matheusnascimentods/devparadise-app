@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom';
 export default function ProfileCard({user}) {
     return (
         <div className={styles.user_card}>
-            <Link to={`/dev/${user.username}`}>
+            <Link to={`/user/${user.username}`}>
                 {user.image ? (
                     <RoundedImage src={`${import.meta.env.VITE_API_URL}/images/devs/${user.image}`} alt="Foto de perfil" />
                 ) : (
@@ -24,7 +24,7 @@ export default function ProfileCard({user}) {
                 )}
             </Link>
             <div className={styles.card_info}>
-                <Link to={`/dev/${user.username}`}>
+                <Link to={`/user/${user.username}`}>
                     <p>{user.name} - <span>@{user.username}</span></p>
                 </Link>
                 {!user.skils || !Array.isArray(user.skils) || user.skils.lenght === 0 ? 

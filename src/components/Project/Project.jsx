@@ -41,7 +41,7 @@ export default function Project({project, handleDelete, myProject}) {
         <>
           <div className={styles.project_item}>
             <div className={styles.info}>
-              <Link to={`/dev/project/${project._id}`}>
+              <Link to={`/projects/${project._id}`}>
                 <span>{project.title}</span>
               </Link>
               {!project.technologies || !Array.isArray(project.technologies) || project.technologies.length === 0 ? 
@@ -60,7 +60,7 @@ export default function Project({project, handleDelete, myProject}) {
 
               <Dropdown.Menu>
               <Dropdown.Item onClick={handleOpen}>Excluir</Dropdown.Item>
-              <Dropdown.Item href={`/dev/edit-project/${project._id}`}>Editar</Dropdown.Item>
+              <Dropdown.Item href={`/me/projects/update/${project._id}`}>Editar</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </div>
@@ -82,7 +82,7 @@ export default function Project({project, handleDelete, myProject}) {
         <>
           <div className={styles.project_item}>
             <div className={styles.info}>
-              <Link to={`/dev/project/${project._id}`}>
+              <Link to={`/projects/${project._id}`}>
                 <span>{project.title}</span>
               </Link>
               {!project.technologies || !Array.isArray(project.technologies) || project.technologies.length === 0 ? 
@@ -98,11 +98,11 @@ export default function Project({project, handleDelete, myProject}) {
             </div>
             <div className={styles.pfp}>
               {user.image ? (
-                <Link to={`/dev/${user.username}`}>
+                <Link to={`/user/${user.username}`}>
                   <RoundedImage src={`${import.meta.env.VITE_API_URL}/images/devs/${user.image}`} alt="Foto de perfil" />
                 </Link>
               ) : (
-                <Link to={`/dev/${user.username}`}>
+                <Link to={`/user/${user.username}`}>
                   <RoundedImage src={defaultPfp} alt="Foto de perfil" />
                 </Link>
               )}

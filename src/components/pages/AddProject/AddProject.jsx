@@ -59,7 +59,7 @@ export default function AddProject() {
         position: "bottom-right",
         theme: "dark"
       });
-      navigate('/dev/my-projects');
+      navigate('/me/projects');
     })
     .catch((error) => {
       toast.error(error.response.data.message, {

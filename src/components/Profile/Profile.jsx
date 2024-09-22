@@ -36,7 +36,7 @@ export default function Profile({ user, projects, myProfile}) {
                     {myProfile == true ? (
                         <>
                             <button>
-                                <Link to="/dev/edit-profile">
+                                <Link to="/me/update">
                                     <RiEditFill size={25}/>
                                     Editar Perfil
                                 </Link>
