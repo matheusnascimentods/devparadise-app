@@ -19,6 +19,6 @@
     color: var(--yellow);
     font-weight: 800;
 }
-.results_container > div:first-child  {
+.results_container .users_container  {
     margin-bottom: 4em;
 }
