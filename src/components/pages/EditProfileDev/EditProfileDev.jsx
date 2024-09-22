@@ -94,38 +94,41 @@ export default function EditProfileDev() {
   }
 
   return (
-    <>
-      <section className={styles.form}>
-          <div className={styles.form_container}>
-            <form onSubmit={handleSubmit}>
-              <h1>Editar perfil</h1>
-              {(user.image || preview) && (
-                <RoundedImage
-                  src={
-                    preview
-                    ? URL.createObjectURL(preview)
-                    : `${import.meta.env.VITE_API_URL}/images/devs/${user.image}`
-                  }
-                  alt={user.name}
-                />
-              )}
-              <Input text="Foto de perfil" type='file' name='image' handleOnChange={onFileChange} />
-              <Input text="Nome" type='text' name='name' plzaceholder='Informe o seu nome' handleOnChange={handleChange} value={user.name}/>
-              <Input text="Username" type='text' name='username' placeholder='Escolha o seu username' handleOnChange={handleChange} value={user.username}/>
-              <InputTags text="Habilidades" name='skils' placeholder='Escolha as tecnologias que você domina' handleOnChange={handleCreate} />
-              <Input text="Descrição" type='text' name='description' placeholder='Informe uma descrição sobre você' handleOnChange={handleChange} value={user.description}/>
-              <Input text="Username Github" type='text' name='github' placeholder='Informe o seu username do Github' handleOnChange={handleChange} value={user.github}/>
-              <Input text="Perfil do Linkedin" type='url' name='linkedin' placeholder='Informe o link do seu perfil no linkedin' handleOnChange={handleChange} value={user.linkedin}/>
-              <Input text="E-mail" type='email' name='email' placeholder='Informe o seu e-mail' handleOnChange={handleChange} value={user.email}/>
-              <Input text="CPF" type='number' name='cpf' placeholder='Informe o seu CPF' handleOnChange={handleChange} value={user.cpf}/>
-              <Input text="Telefone" type='phone' name='phone' placeholder='Informe o seu Telefone' handleOnChange={handleChange} value={user.phone}/>
-              <input type="submit" value="Confirmar alterações" />
+    <section className={styles.form}>
+        <div className={styles.form_container}>
+          <form onSubmit={handleSubmit}>
+            <h1>Editar perfil</h1>
+            {(user.image || preview) && (
+              <RoundedImage
+                src={
+                  preview
+                  ? URL.createObjectURL(preview)
+                  : `${import.meta.env.VITE_API_URL}/images/devs/${user.image}`
+                }
+                alt={user.name}
+              />
+            )}
+            <Input text="Foto de perfil" type='file' name='image' handleOnChange={onFileChange} />
+            <Input text="Nome" type='text' name='name' plzaceholder='Informe o seu nome' handleOnChange={handleChange} value={user.name}/>
+            <Input text="Username" type='text' name='username' placeholder='Escolha o seu username' handleOnChange={handleChange} value={user.username}/>
+            <InputTags text="Habilidades" name='skils' placeholder='Escolha as tecnologias que você domina' handleOnChange={handleCreate} />
+            <Input text="Descrição" type='text' name='description' placeholder='Informe uma descrição sobre você' handleOnChange={handleChange} value={user.description}/>
+            <Input text="Username Github" type='text' name='github' placeholder='Informe o seu username do Github' handleOnChange={handleChange} value={user.github}/>
+            <Input text="Perfil do Linkedin" type='url' name='linkedin' placeholder='Informe o link do seu perfil no linkedin' handleOnChange={handleChange} value={user.linkedin}/>
+            <Input text="E-mail" type='email' name='email' placeholder='Informe o seu e-mail' handleOnChange={handleChange} value={user.email}/>
+            <Input text="CPF" type='number' name='cpf' placeholder='Informe o seu CPF' handleOnChange={handleChange} value={user.cpf}/>
+            <Input text="Telefone" type='phone' name='phone' placeholder='Informe o seu Telefone' handleOnChange={handleChange} value={user.phone}/>
+            <input type="submit" value="Confirmar alterações" />
+            <div className={styles.links}>
               <p className={styles.form_span}>
                 <Link to='/dev/change-password'>Trocar senha</Link>
               </p>
-            </form>
-          </div>
-      </section>
-    </>
+              <p className={styles.form_span}>
+                <Link to='/dev/delete-account'>Excluir conta</Link>
+              </p>
+            </div>
+          </form>
+        </div>
+    </section>
   )
 }

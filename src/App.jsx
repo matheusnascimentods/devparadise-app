@@ -18,6 +18,7 @@ import EditProject from './components/pages/EditProject/EditProject';
 import UserProfile from './components/pages/UserProfile/UserProfile';
 import ProjectView from './components/pages/ProjectView/ProjectView';
 import Searchpage from './components/pages/Searchpage/Searchpage';
+import DeleteUser from './components/pages/DeleteUser/DeleteUser';
 
 //Context 
 import { UserProvider } from './context/UserContext';
@@ -38,6 +39,7 @@ function App() {
             <Route path='/dev/:username' element={<UserProfile /> }/>
             <Route path='/dev/edit-profile' element={ <EditProfileDev /> }/>
             <Route path='/dev/change-password' element={ <Changepassword /> }/>
+            <Route path='/dev/delete-account' element={ <DeleteUser /> }/>
             <Route path='/dev/create-project' element={ <AddProject /> }/>
             <Route path='/dev/project/:id' element={ <ProjectView /> }/>
             <Route path='/dev/edit-project/:id' element={ <EditProject /> }/>

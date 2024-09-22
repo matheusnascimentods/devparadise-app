@@ -29,7 +29,7 @@ export default function Header() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [src, setSrc] = useState('');
+  const [src, setSrc] = useState(defaultPfp);
 
   useEffect(() => {  
     if (token) {     
@@ -54,22 +54,22 @@ export default function Header() {
         </Link>
         <Button onClick={handleShow} >
           <Suspense fallback={<p>Carregando...</p>}>
-          {user.image ? (
-            <RoundedImage src={`${import.meta.env.VITE_API_URL}/images/devs/${user.image}`} alt="Foto de perfil" />
-          ) : (
-            <RoundedImage src={defaultPfp} alt="Foto de perfil" />
-          )}
+            <RoundedImage src={src} alt="Foto de perfil" />
           </Suspense>
         </Button>
         <Offcanvas show={show} onHide={handleClose} placement='end'>
           <Offcanvas.Header closeButton>
             <Offcanvas.Title>
-              {user.image ? (
-                <RoundedImage src={`${import.meta.env.VITE_API_URL}/images/devs/${user.image}`} alt="Foto de perfil" />
-                ) : (
-                <RoundedImage src={defaultPfp} alt="Foto de perfil" />
+              {authenticated && (
+                <>
+                  {user.image ? (
+                    <RoundedImage src={`${import.meta.env.VITE_API_URL}/images/devs/${user.image}`} alt="Foto de perfil" />
+                    ) : (
+                    <RoundedImage src={defaultPfp} alt="Foto de perfil" />
+                  )}
+                  <p>@{user.username}</p>
+                </>
               )}
-              <p>@{user.username}</p>
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
