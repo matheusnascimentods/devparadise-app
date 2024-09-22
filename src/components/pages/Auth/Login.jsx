@@ -35,7 +35,7 @@ export default function Login() {
       <div className={styles.form_container}>
         <form onSubmit={handleSubmit}>
           <h1>Login</h1>
-          <Input text="E-mail" type='email' name='email' placeholder='Informe o seu e-mail' handleOnChange={handleChange}/>
+          <Input text="E-mail ou Username" type='text' name='login' placeholder='Informe o seu e-mail ou username' handleOnChange={handleChange}/>
           <Input text="Senha" type='password' name='password' placeholder='Informe sua senha' handleOnChange={handleChange}/>
           <input type="submit" value="Login" />
           <p className={styles.form_span}>
