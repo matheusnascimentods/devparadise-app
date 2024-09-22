@@ -10,8 +10,8 @@ export function formatDate(str) {
     }
 
     const formattedDate = new Intl.DateTimeFormat('pt-BR', {
-        day: '2-digit',
-        month: '2-digit',
+        day: 'numeric',
+        month: 'long',
         year: 'numeric',
     }).format(date);
 

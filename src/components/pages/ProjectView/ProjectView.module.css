@@ -25,6 +25,9 @@
     font-weight: 700;
     color: var(--yellow);
 }
+.card_header span a {
+    color: var(--yellow);
+}
 .card_carousel {
     margin-bottom: 2em;
 }
@@ -39,12 +42,15 @@
     list-style: none;
     padding: 0;
 }
-.links .github a {
+.links .github a, .links .link a {
     display: flex;
     align-items: center;
     color: #Ffffff;
     font-size: 1em;
 }
-.links .github a p {
+.links .github a p, .links .link a p {
     margin: 0 0 0 15px;
+}
+.links .github a {
+    margin-right: 2em;
 }

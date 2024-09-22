@@ -16,6 +16,7 @@ import { Link } from 'react-router-dom';
 
 //Icons
 import { RxGithubLogo } from "react-icons/rx";
+import { RiLink } from "react-icons/ri";
 
 export default function ProjectView() {
 
@@ -40,31 +41,37 @@ export default function ProjectView() {
       <div className={styles.card}>
         <div className={styles.card_header}>
           <h1>{project.title}</h1>
-          <span>Criado em {formatDate(project.createdAt)}</span>
+          <span>Desenvolvido por <Link to={`/dev/joyboy`}>@{project.devUsername}</Link> em {formatDate(project.createdAt)}</span>
         </div>
         <div className={styles.card_body}>
           <div className={styles.card_carousel}>
-            {images ? (
-              <>
-                <Carousel autoplay className="custom-slider">
-                  {images.map((image) => (
-                    <img src={`${import.meta.env.VITE_API_URL}/images/projects/${image}`} alt='imagem' key={image}/>
-                  ))}
-                </Carousel>
-              </>
-            ) : (<></>)}
+            {images && (
+              <Carousel autoplay className="custom-slider">
+                {images.map((image) => (
+                  <img src={`${import.meta.env.VITE_API_URL}/images/projects/${image}`} alt='imagem' key={image}/>
+                ))}
+              </Carousel>
+            )}
           </div>
           {project.technologies ? (<Badges list={Array.from(project.technologies)} />) : (<></>)}
           <p className={styles.description}><span>Descrição:</span> {project.description}</p>
           <ul className={styles.links}>
-            {project.repository ? (
+            {project.repository && (
               <li className={styles.github}>
                 <Link to={`${project.repository}`}>
                     <RxGithubLogo color='FFFFFF' size={22} />
                     <p>Ir para o Github</p>
                 </Link>
               </li>
-            ) : (<></>)}
+            )}
+            {project.link && (
+              <li className={styles.link}>
+                <Link to={`${project.link}`}> 
+                  <RiLink color='FFFFFF' size={22}/>
+                  <p>Ir para página do projeto</p>
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>
