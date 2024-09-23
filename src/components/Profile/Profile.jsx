@@ -87,12 +87,14 @@ export default function Profile({ user, projects, myProfile}) {
                         )}
                     </div>
                     {user.skils && (<Badges list={user.skils} />)}
-                    {console.log(projects.total)}
                     {projects.total > 0 && (
                         <>
-                            <span className={styles.fixeds}>
-                                <BsPinAngleFill size={18} />
-                                <p>Fixados</p>
+                            <span className={styles.span}>
+                                {myProfile === true ? (
+                                    <p>Meus projetos</p>
+                                ) : (
+                                    <p>Todos os projetos de {user.name}</p> 
+                                )}
                             </span>
                             <SmallCardContainer data={projects.projects} />
                         </>

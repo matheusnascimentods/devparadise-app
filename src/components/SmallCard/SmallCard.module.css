@@ -25,10 +25,16 @@
     display: flex;
     flex-direction: column;
 }
-.card_info a {
-    text-decoration: none;
-}
 .card_info span {
+    display: flex;
+    align-items: center;
+    color: var(--yellow);
+}
+.card_info span a {
+    text-decoration: none;
+    margin-left: 1em;
+}
+.card_info span a p {
     color: var(--yellow);
     font-weight: 600;
     margin: 0;

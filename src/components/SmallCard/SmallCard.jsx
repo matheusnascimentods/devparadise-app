@@ -1,6 +1,9 @@
 import React from 'react'
 import styles from './SmallCard.module.css';
 
+//icons
+import { BsPinAngleFill } from "react-icons/bs";
+
 //components
 import { Link } from 'react-router-dom';
 
@@ -13,9 +16,14 @@ export default function SmallCard({ data }) {
           </div>
         </Link>
         <div className={styles.card_info}>
-          <Link to={`/projects/${data._id}`}>
-            <span>{data.title}</span>
-          </Link>
+          <span>
+            {data.favorite === true && (
+                  <BsPinAngleFill size={18} />
+            )}
+            <Link to={`/projects/${data._id}`}>
+              <p>{data.title}</p>
+            </Link>
+          </span>
           <p>{data.description}</p>
         </div>
     </div>

@@ -15,7 +15,7 @@ export default function User() {
     useEffect(() => {
         axios.all([
             axios.get(`${import.meta.env.VITE_API_URL}/dev/get-by-username/${username}`),
-            axios.get(`${import.meta.env.VITE_API_URL}/project/get-favorites/${username}`),
+            axios.get(`${import.meta.env.VITE_API_URL}/project/get-projects/${username}`),
         ])
         .then(axios.spread((userResponse, projectsResponse) => {
             setUser(userResponse.data.data);

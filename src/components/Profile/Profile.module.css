@@ -102,13 +102,12 @@
 .description p {
     font-size: 1.1em;
 }
-.fixeds {
+.span {
     display: flex;
     align-items: center;
     color: var(--yellow);
 }
-.fixeds p {
-    margin: 0 0 0 1em;
+.span p {
     font-size: 1.2em;
     font-weight: 800;
 }
