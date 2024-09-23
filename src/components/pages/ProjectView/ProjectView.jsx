@@ -58,7 +58,7 @@ export default function ProjectView() {
           <ul className={styles.links}>
             {project.repository && (
               <li className={styles.github}>
-                <Link to={`${project.repository}`}>
+                <Link to={`${project.repository}`} target='_blank'>
                     <RxGithubLogo color='FFFFFF' size={22} />
                     <p>Ir para o Github</p>
                 </Link>
@@ -66,7 +66,7 @@ export default function ProjectView() {
             )}
             {project.link && (
               <li className={styles.link}>
-                <Link to={`${project.link}`}> 
+                <Link to={`${project.link}`} target='_blank'> 
                   <RiLink color='FFFFFF' size={22}/>
                   <p>Ir para página do projeto</p>
                 </Link>

@@ -24,7 +24,7 @@ export default function Home() {
   }, []);
 
   async function handleKeyDown(e) {
-    if (e.key === "Enter" && e.target.value !== "") {
+    if (e.key === "Enter") {
       navigate(`/search?q=${e.target.value}`);
     }
   }

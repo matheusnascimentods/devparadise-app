@@ -53,7 +53,7 @@ export default function Profile({ user, projects, myProfile}) {
                             </li>
                             {user.github ? (
                                 <li>
-                                    <Link to={`https://github.com/${user.github}`}>
+                                    <Link to={`https://github.com/${user.github}`} target='_blank'>
                                         <RxGithubLogo color='F5A904' />
                                         <p>{user.github}</p>
                                     </Link>
@@ -61,7 +61,7 @@ export default function Profile({ user, projects, myProfile}) {
                             ) : (<></>)}
                             {user.linkedin ? (
                                 <li>
-                                    <Link to={user.linkedin}>
+                                    <Link to={user.linkedin} target='_blank'>
                                         <FaLinkedin color='F5A904' />
                                         <p>Linkedin</p>
                                     </Link>

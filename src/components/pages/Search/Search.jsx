@@ -35,14 +35,14 @@ export default function Search() {
     });
     
     async function handleKeyDown(e) {
-        if (e.key === "Enter" && e.target.value !== "") {
+        if (e.key === "Enter") {
             navigate(`/search?q=${e.target.value}`);
         }
     }
 
     return (
         <section className={styles.searchpage_container}>
-            <h2>Resultados encontrados para {query}</h2>
+            <h2>{query ? (`Resultados encontrados para ${query}`) : ('Todos os resultados')}</h2>
             <Searchbar placeholder='Busque por um projeto ou por outro DEV' handleKeyDown={handleKeyDown} />
                 <div className={styles.results_container}>
                     <Tabs defaultActiveKey="1" appearance="pills">
