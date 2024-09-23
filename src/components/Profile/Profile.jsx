@@ -16,6 +16,7 @@ import { RxGithubLogo } from "react-icons/rx";
 import { RiEditFill } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
 import { FaLinkedin } from "react-icons/fa";
+import { BsPinAngleFill } from "react-icons/bs";
 
 export default function Profile({ user, projects, myProfile}) {
     return (
@@ -85,8 +86,17 @@ export default function Profile({ user, projects, myProfile}) {
                             </>
                         )}
                     </div>
-                    {user.skils ? (<Badges list={user.skils} />) : (<></>)}
-                    {projects ? (<SmallCardContainer data={projects} />) : (<></>)}
+                    {user.skils && (<Badges list={user.skils} />)}
+                    {console.log(projects.total)}
+                    {projects.total > 0 && (
+                        <>
+                            <span className={styles.fixeds}>
+                                <BsPinAngleFill size={18} />
+                                <p>Fixados</p>
+                            </span>
+                            <SmallCardContainer data={projects.projects} />
+                        </>
+                    )}
                 </div>
             </div>
         </div>

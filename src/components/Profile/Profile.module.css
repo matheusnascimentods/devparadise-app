@@ -102,6 +102,16 @@
 .description p {
     font-size: 1.1em;
 }
+.fixeds {
+    display: flex;
+    align-items: center;
+    color: var(--yellow);
+}
+.fixeds p {
+    margin: 0 0 0 1em;
+    font-size: 1.2em;
+    font-weight: 800;
+}
 @media only screen and (max-width: 1140px) {
     .card_info {
         flex-direction: column;

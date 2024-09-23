@@ -12,17 +12,16 @@ export default function Me({data}) {
     const [token] = useState(localStorage.getItem('token') || '');
     
     useEffect(() => {
-        
-        axios.get(`${import.meta.env.VITE_API_URL}/dev/get-user`, {
-            headers: {
-                Authorization: `Bearer ${JSON.parse(token)}`,
-            },
-        })
-        .then((response) => {
-            setUser(response.data.dev);
-            setProjects(response.data.projects);
-        });
+        axios.all([
+            axios.get(`${import.meta.env.VITE_API_URL}/dev/get-user`, { headers: { Authorization: `Bearer ${JSON.parse(token)}` }}),
+            axios.get(`${import.meta.env.VITE_API_URL}/dev/my-favorites`, { headers: { Authorization: `Bearer ${JSON.parse(token)}` }}),
+        ])
+        .then(axios.spread((userResponse, projectsResponse) => {
+            setUser(userResponse.data.dev);
+            setProjects(projectsResponse.data);
+        }));
     }, [token]);
+
 
     return (<Profile user={user} projects={projects} myProfile={true} />)
 }

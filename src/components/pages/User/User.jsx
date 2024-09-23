@@ -13,11 +13,14 @@ export default function User() {
     const [projects, setProjects] = useState([]);
     
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}/dev/get-by-username/${username}`)
-        .then((response) => {
-            setUser(response.data.data);
-            setProjects(response.data.projects);
-        });
+        axios.all([
+            axios.get(`${import.meta.env.VITE_API_URL}/dev/get-by-username/${username}`),
+            axios.get(`${import.meta.env.VITE_API_URL}/project/get-favorites/${username}`),
+        ])
+        .then(axios.spread((userResponse, projectsResponse) => {
+            setUser(userResponse.data.data);
+            setProjects(projectsResponse.data);
+        }))
     }, [username]);
     
     return (<Profile user={user} projects={projects} myProfile={false} />);
