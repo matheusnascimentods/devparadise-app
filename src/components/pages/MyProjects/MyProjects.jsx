@@ -31,7 +31,6 @@ export default function MyProjects() {
         })
         .then((response) => {
             setProjects(response.data.projects);
-            
         });
     }, [token]);      
     
@@ -49,7 +48,36 @@ export default function MyProjects() {
             setProjects(projects.filter(data => data._id !== project._id));
         })
         .catch((error) => {
-            toast.error(error.data.message, {
+            toast.error(error.response.message, {
+                position: "bottom-right",
+                theme: "dark"
+            });
+        });
+    }
+
+    async function handleFavorite(project) {
+        console.log(project._id)
+        await axios.patch(`${import.meta.env.VITE_API_URL}/project/favorite`, {
+            id: project._id,
+        }, {
+            headers: {
+                Authorization: `Bearer ${JSON.parse(token)}`,
+            }
+        })
+        .then((response) => {
+            toast.success(response.data.message, {
+                position: "bottom-right",
+                theme: "dark"
+            });
+
+            let updatedData = response.data.project;
+
+            setProjects(projects.map(project => 
+                project._id === updatedData._id ? updatedData: project
+            ));
+        })
+        .catch((error) => {
+            toast.error(error.response.message, {
                 position: "bottom-right",
                 theme: "dark"
             });
@@ -97,7 +125,7 @@ export default function MyProjects() {
             <Divider/>
             <span className={styles.results}>{results}</span>
             <div className={styles.list_projects}>
-                {Array.from(projects).map((project) => <Project project={project} key={project._id} handleDelete={handleDelete} myProject={true} />)}
+                {Array.from(projects).map((project) => <Project project={project} key={project._id} handleDelete={handleDelete} handleFavorite={handleFavorite} myProject={true} />)}
             </div>
         </section>
     )

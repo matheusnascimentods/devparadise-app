@@ -14,12 +14,18 @@
     display: flex;
     flex-direction: column;
 }
+.project_item .info span {
+    display: flex;
+    align-items: center;
+}
 .project_item .info a {
     text-decoration: none;
 }
-.project_item span {
+.project_item p {
     color: var(--yellow);
     font-weight: 700;
+    margin: 0;
+    margin-left: 1em;
 }
 .technologies_container {
     display: flex;

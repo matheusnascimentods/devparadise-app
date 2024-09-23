@@ -16,7 +16,11 @@ import RemindIcon from '@rsuite/icons/legacy/Remind';
 import { Link } from 'react-router-dom';
 import RoundedImage from '../RoundedImage/RoundedImage';
 
-export default function Project({project, handleDelete, myProject}) {
+//Icons 
+import { IoMdHeart } from "react-icons/io";
+import { BsPinAngleFill } from "react-icons/bs";
+
+export default function Project({project, handleDelete, handleFavorite, myProject}) {
   //modal
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -28,7 +32,7 @@ export default function Project({project, handleDelete, myProject}) {
     .then((response) => {
       setUser(response.data.data);
     });
-  }, []);
+  });
 
   async function handleOnClick() {
     await handleDelete(project);
@@ -41,9 +45,14 @@ export default function Project({project, handleDelete, myProject}) {
         <>
           <div className={styles.project_item}>
             <div className={styles.info}>
-              <Link to={`/projects/${project._id}`}>
-                <span>{project.title}</span>
-              </Link>
+              <span>
+                {project.favorite == true && (
+                  <BsPinAngleFill size={18} />
+                )}
+                <Link to={`/projects/${project._id}`}>
+                  <p>{project.title}</p>
+                </Link>
+              </span>
               {!project.technologies || !Array.isArray(project.technologies) || project.technologies.length === 0 ? 
               (<></>) : 
               (
@@ -59,8 +68,9 @@ export default function Project({project, handleDelete, myProject}) {
               <Dropdown.Toggle id="dropdown-basic" variant='success'>Opções</Dropdown.Toggle>
 
               <Dropdown.Menu>
-              <Dropdown.Item onClick={handleOpen}>Excluir</Dropdown.Item>
-              <Dropdown.Item href={`/me/projects/update/${project._id}`}>Editar</Dropdown.Item>
+                <Dropdown.Item onClick={() => handleFavorite(project)}>Favoritar</Dropdown.Item>
+                <Dropdown.Item href={`/me/projects/update/${project._id}`}>Editar</Dropdown.Item>
+                <Dropdown.Item onClick={handleOpen}>Excluir</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </div>
@@ -83,7 +93,7 @@ export default function Project({project, handleDelete, myProject}) {
           <div className={styles.project_item}>
             <div className={styles.info}>
               <Link to={`/projects/${project._id}`}>
-                <span>{project.title}</span>
+                <p>{project.title}</p>
               </Link>
               {!project.technologies || !Array.isArray(project.technologies) || project.technologies.length === 0 ? 
               (<></>) : 
