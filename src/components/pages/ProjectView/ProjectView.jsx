@@ -41,7 +41,7 @@ export default function ProjectView() {
       <div className={styles.card}>
         <div className={styles.card_header}>
           <h1>{project.title}</h1>
-          <span>Desenvolvido por <Link to={`/dev/joyboy`}>@{project.devUsername}</Link> em {formatDate(project.createdAt)}</span>
+          <span>Desenvolvido por <Link to={`/user/${project.devUsername}`}>@{project.devUsername}</Link> em {formatDate(project.createdAt)}</span>
         </div>
         <div className={styles.card_body}>
           <div className={styles.card_carousel}>
