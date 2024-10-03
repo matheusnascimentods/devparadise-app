@@ -10,10 +10,6 @@ import RoundedImage from '../RoundedImage/RoundedImage';
 import Badges from '../Badges/Badges';
 import SmallCardContainer from '../SmallCardConstainer/SmallCardContainer';
 import Divider from '../Divider/Divider';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-
 
 //Icons
 import { RxGithubLogo } from "react-icons/rx";
@@ -21,67 +17,21 @@ import { RiEditFill } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
 import { FaLinkedin } from "react-icons/fa";
 
-export default function Profile({ user, projects, myProfile }) {
-    const [isFollowing, setIsFollowing] = useState(undefined);
-    const [isFollowingYou, setIsFollowingYou] = useState(undefined);
-    const [token] = useState(localStorage.getItem('token') || undefined);
-    const navigate = useNavigate();
+export default function Profile({ user, projects, myProfile, handleFollow, status }) {
 
-    async function handleFollow() {
+    const [message, setMessage] = useState('');
 
-        try {
-            if (token == undefined) {
-                navigate('/login')
-            }
-            if (isFollowing) {
-                await axios.delete(`${import.meta.env.VITE_API_URL}/user/unfollow`, 
-                {
-                    followedId: user._id
-                }, 
-                {
-                    headers: { Authorization: `Bearer ${JSON.parse(token)}` }
-                }).then((response) => {
-                    toast.success(response.data.message, {
-                        position: "bottom-right",
-                        theme: "dark"
-                    });
-                    setIsFollowing(false);
-                }).catch((error) => {
-                    toast.error(error.data.message, {
-                        position: "bottom-right",
-                        theme: "dark"
-                    });
-                });
-            }
-            if (!isFollowing) {
-                await axios.post(`${import.meta.env.VITE_API_URL}/user/follow`, 
-                {
-                    followedId: user._id
-                }, 
-                {
-                    headers: { Authorization: `Bearer ${JSON.parse(token)}` }
-                })
-                .then((response) => {
-                    toast.success(response.data.message, {
-                        position: "bottom-right",
-                        theme: "dark"
-                    });
-                    setIsFollowing(true);
-                }).catch((error) => {
-                    toast.error(error.data.message, {
-                        position: "bottom-right",
-                        theme: "dark"
-                    });
-                })
-            }
-        } catch (error) {
-            toast.error("Algo deu errado, tente mais tarde!", {
-                position: "bottom-right",
-                theme: "dark"
-            });
-            console.error(error.data);
+    useEffect(() => {
+        if (status.alreadyYouFollow) {
+            setMessage('Seguindo')
         }
-    }
+        if (!status.alreadyYouFollow && !status.alreadyFollowYou) {
+            setMessage('Seguir')
+        }
+        if (!status.alreadyYouFollow && status.alreadyFollowYou) {
+            setMessage('Seguir de volta')
+        }
+    });
 
     return (
         <section className={styles.card}>
@@ -98,22 +48,19 @@ export default function Profile({ user, projects, myProfile }) {
                     )}
                 </div>
                 <div className={styles.info}>
-                    {myProfile == true ? (
-                        <>
-                            <button>
-                                <Link to="/me/update">
-                                    <RiEditFill size={25}/>
-                                    Editar Perfil
-                                </Link>
-                            </button>
-                        </>
-                    ): (
-                        <>
-                        </>
+                    {myProfile == true && (
+                        <button>
+                            <Link to="/me/update">
+                                <RiEditFill size={25}/>
+                                Editar Perfil
+                            </Link>
+                        </button>
                     )}
-                    {
-
-                    }
+                    {myProfile == false && (
+                        <button className={styles.follow_btn} onClick={handleFollow}>
+                            {message}
+                        </button>
+                    )}
                     <h3>Informações</h3>
                     <div className={styles.contact}>
                         <ul>

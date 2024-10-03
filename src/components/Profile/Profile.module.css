@@ -111,6 +111,9 @@
     font-size: 1.2em;
     font-weight: 800;
 }
+.follow_btn {
+    font-weight: 800;
+}
 @media only screen and (max-width: 1140px) {
     .card_info {
         flex-direction: column;
