@@ -24,7 +24,7 @@ export default function Changepassword({}) {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        await axios.patch(`${import.meta.env.VITE_API_URL}/dev/change-password`, data, {
+        await axios.patch(`${import.meta.env.VITE_API_URL}/user/change-password`, data, {
             headers: {
                 Authorization: `Bearer ${JSON.parse(token)}`
             }

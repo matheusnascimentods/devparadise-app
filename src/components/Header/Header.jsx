@@ -33,14 +33,14 @@ export default function Header() {
 
   useEffect(() => {  
     if (token) {     
-      axios.get(`${import.meta.env.VITE_API_URL}/dev/get-user`, {
+      axios.get(`${import.meta.env.VITE_API_URL}/user/me`, {
           headers: {
               Authorization: `Bearer ${JSON.parse(token)}`,
           },
       })
       .then((response) => {
           setUser(response.data.dev);
-          setSrc(`${import.meta.env.VITE_API_URL}/images/devs/${response.data.dev.image}`);
+          setSrc(`${import.meta.env.VITE_API_URL}/images/users/${response.data.dev.image}`);
       });
       
     }  
@@ -63,7 +63,7 @@ export default function Header() {
               {authenticated && (
                 <>
                   {user.image ? (
-                    <RoundedImage src={`${import.meta.env.VITE_API_URL}/images/devs/${user.image}`} alt="Foto de perfil" />
+                    <RoundedImage src={`${import.meta.env.VITE_API_URL}/images/users/${user.image}`} alt="Foto de perfil" />
                     ) : (
                     <RoundedImage src={defaultPfp} alt="Foto de perfil" />
                   )}

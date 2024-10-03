@@ -28,7 +28,7 @@ export default function Project({project, handleDelete, handleFavorite, myProjec
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API_URL}/dev/get-by-id/${project.devId}`)
+    axios.get(`${import.meta.env.VITE_API_URL}/user?id=${project.devId}`)
     .then((response) => {
       setUser(response.data.data);
     });
@@ -109,7 +109,7 @@ export default function Project({project, handleDelete, handleFavorite, myProjec
             <div className={styles.pfp}>
               {user.image ? (
                 <Link to={`/user/${user.username}`}>
-                  <RoundedImage src={`${import.meta.env.VITE_API_URL}/images/devs/${user.image}`} alt="Foto de perfil" />
+                  <RoundedImage src={`${import.meta.env.VITE_API_URL}/images/users/${user.image}`} alt="Foto de perfil" />
                 </Link>
               ) : (
                 <Link to={`/user/${user.username}`}>

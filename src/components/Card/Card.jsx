@@ -12,7 +12,7 @@ export default function Card({data}) {
   const [author, setAuthor] = useState({});
 
   useEffect(() => {
-      axios.get(`${import.meta.env.VITE_API_URL}/dev/get-by-id/${data.devId}`)
+      axios.get(`${import.meta.env.VITE_API_URL}/user?id=${data.devId}`)
       .then((response) => {
         setAuthor(response.data.data);
       });

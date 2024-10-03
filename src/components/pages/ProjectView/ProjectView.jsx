@@ -23,16 +23,14 @@ export default function ProjectView() {
   const {id} = useParams();
   const [project, setProject] = useState({});
   const [images, setImages] = useState([]);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API_URL}/project/get-by-id/${id}`)
+    axios.get(`${import.meta.env.VITE_API_URL}/project?id=${id}`)
     .then((response) => {
       setProject(response.data.data);
-    });
-
-    axios.get(`${import.meta.env.VITE_API_URL}/project/get-images/${id}`)
-    .then((response) => {
-      setImages(response.data.images);
+      setImages(response.data.data.images)
+      setUser(response.data.user);
     });
   }, [id]);
 
@@ -41,7 +39,7 @@ export default function ProjectView() {
       <div className={styles.card}>
         <div className={styles.card_header}>
           <h1>{project.title}</h1>
-          <span>Desenvolvido por <Link to={`/user/${project.devUsername}`}>@{project.devUsername}</Link> em {formatDate(project.createdAt)}</span>
+          <span>Desenvolvido por <Link to={`/user/${user.username}`}>@{user.username}</Link> em {formatDate(project.createdAt)}</span>
         </div>
         <div className={styles.card_body}>
           <div className={styles.card_carousel}>

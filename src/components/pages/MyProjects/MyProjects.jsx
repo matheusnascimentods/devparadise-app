@@ -24,7 +24,7 @@ export default function MyProjects() {
     const [results, setResults] = useState('');
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}/dev/my-projects`, {
+        axios.get(`${import.meta.env.VITE_API_URL}/project/me`, {
             headers: {
                 Authorization: `Bearer ${JSON.parse(token)}`,
             },
@@ -56,7 +56,6 @@ export default function MyProjects() {
     }
 
     async function handleFavorite(project) {
-        console.log(project._id)
         await axios.patch(`${import.meta.env.VITE_API_URL}/project/favorite`, {
             id: project._id,
         }, {
@@ -88,7 +87,7 @@ export default function MyProjects() {
         if (e.key === "Enter" && e.target.value !== "") {
             let query = e.target.value;
 
-            await axios.get(`${import.meta.env.VITE_API_URL}/dev/my-projects?q=${query}`, {
+            await axios.get(`${import.meta.env.VITE_API_URL}/project/me?q=${query}`, {
                 headers: {
                     Authorization: `Bearer ${JSON.parse(token)}`,
                 },
@@ -100,7 +99,7 @@ export default function MyProjects() {
         }
 
         if (e.target.value === "") {
-            axios.get(`${import.meta.env.VITE_API_URL}/dev/my-projects`, {
+            axios.get(`${import.meta.env.VITE_API_URL}/project/me`, {
                 headers: {
                     Authorization: `Bearer ${JSON.parse(token)}`,
                 },

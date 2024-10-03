@@ -17,10 +17,9 @@ export default function EditProject() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}/project/get-by-id/${id}`)
+        axios.get(`${import.meta.env.VITE_API_URL}/project?id=${id}`)
         .then((response) => {
             setProject(response.data.data);
-            console.log(project)
         })
     }, [token]);
 

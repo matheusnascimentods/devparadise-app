@@ -29,7 +29,7 @@ export default function DeleteUser() {
             password: password
         }
 
-        await axios.delete(`${import.meta.env.VITE_API_URL}/dev`, {
+        await axios.delete(`${import.meta.env.VITE_API_URL}/user`, {
             data: {
                 password: password
             }

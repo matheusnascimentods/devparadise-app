@@ -24,7 +24,7 @@ export default function UpdateUser() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API_URL}/dev/get-user`, {
+    axios.get(`${import.meta.env.VITE_API_URL}/user/me`, {
       headers: {
         Authorization: `Bearer ${JSON.parse(token)}`,
       },
@@ -73,7 +73,7 @@ export default function UpdateUser() {
       }
     });
 
-    await axios.patch(`${import.meta.env.VITE_API_URL}/dev`, formData, {
+    await axios.patch(`${import.meta.env.VITE_API_URL}/user`, formData, {
       headers: {
         Authorization: `Bearer ${JSON.parse(token)}`
       }
@@ -103,7 +103,7 @@ export default function UpdateUser() {
                 src={
                   preview
                   ? URL.createObjectURL(preview)
-                  : `${import.meta.env.VITE_API_URL}/images/devs/${user.image}`
+                  : `${import.meta.env.VITE_API_URL}/images/users/${user.image}`
                 }
                 alt={user.name}
               />

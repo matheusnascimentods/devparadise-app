@@ -26,7 +26,7 @@ export default function Search() {
     useEffect(() => {
         axios.all([
             axios.get(`${import.meta.env.VITE_API_URL}/project?q=${query}`),
-            axios.get(`${import.meta.env.VITE_API_URL}/dev?q=${query}`),
+            axios.get(`${import.meta.env.VITE_API_URL}/user?q=${query}`),
         ])
         .then(axios.spread((projectsResponse, usersResponse) => {
             setProjects(projectsResponse.data);
