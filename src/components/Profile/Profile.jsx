@@ -22,14 +22,16 @@ export default function Profile({ user, projects, myProfile, handleFollow, statu
     const [message, setMessage] = useState('');
 
     useEffect(() => {
-        if (status.alreadyYouFollow) {
-            setMessage('Seguindo')
-        }
-        if (!status.alreadyYouFollow && !status.alreadyFollowYou) {
-            setMessage('Seguir')
-        }
-        if (!status.alreadyYouFollow && status.alreadyFollowYou) {
-            setMessage('Seguir de volta')
+        if(status) {
+            if (status.alreadyYouFollow) {
+                setMessage('Seguindo')
+            }
+            if (!status.alreadyYouFollow && !status.alreadyFollowYou) {
+                setMessage('Seguir')
+            }
+            if (!status.alreadyYouFollow && status.alreadyFollowYou) {
+                setMessage('Seguir de volta')
+            }
         }
     });
 

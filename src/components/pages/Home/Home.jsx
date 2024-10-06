@@ -21,7 +21,7 @@ export default function Home() {
     axios.get(`${import.meta.env.VITE_API_URL}/project`).then((response) => {
       setProjects(response.data.data);      
     })
-  }, []);
+  });
 
   async function handleKeyDown(e) {
     if (e.key === "Enter") {

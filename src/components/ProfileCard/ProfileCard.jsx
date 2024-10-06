@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 //styles
 import styles from './ProfileCard.module.css';
@@ -12,8 +13,83 @@ import axios from 'axios';
 import RoundedImage from '../RoundedImage/RoundedImage';
 import Badges from '../Badges/Badges';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-export default function ProfileCard({user}) {
+export default function ProfileCard({user, followIsVisible}) {
+
+    const [token] = useState(localStorage.getItem('token') || '');
+    const [status, setStatus] = useState({});
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (token != undefined) {
+            axios.get(`${import.meta.env.VITE_API_URL}/connection/${user.username}/status`, { headers: { Authorization: `Bearer ${JSON.parse(token)}` }})
+            .then((response) => {
+                setStatus({
+                    alreadyFollowYou: response.data.alreadyFollowYou,
+                    alreadyYouFollow: response.data.alreadyYouFollow,
+                });
+            });
+        }
+    }, [token]);
+
+    async function handleFollow() {
+        if (token == undefined) {
+            navigate('/login')
+        }
+        if(status.alreadyYouFollow) {
+            await axios.delete(`${import.meta.env.VITE_API_URL}/connection/unfollow`, 
+                {
+                    data: { followedId: user._id }
+                }, 
+                {
+                    headers: { Authorization: `Bearer ${JSON.parse(token)}` }
+                }
+            )
+            .then((response) => {
+                toast.success(response.data.message, {
+                    position: "bottom-right",
+                    theme: "dark"
+                });
+                updateStatus();
+            }).catch((error) => {
+                toast.error(error.data.message, {
+                    position: "bottom-right",
+                    theme: "dark"
+                });
+            });
+        }
+        if(!status.alreadyYouFollow) {
+            await axios.post(`${import.meta.env.VITE_API_URL}/connection/follow`, 
+                {
+                    followedId: user._id
+                }, 
+                {
+                    headers: { Authorization: `Bearer ${JSON.parse(token)}` }
+                }
+            )
+            .then((response) => {
+                toast.success(response.data.message, {
+                    position: "bottom-right",
+                    theme: "dark"
+                });
+                updateStatus();
+            }).catch((error) => {
+                toast.error(error.data.message, {
+                    position: "bottom-right",
+                    theme: "dark"
+                });
+            });
+        }
+    }
+
+    async function updateStatus() {
+        setStatus({
+            alreadyFollowYou: status.alreadyFollowYou,
+            alreadyYouFollow: !status.alreadyYouFollow,
+        })
+    }
+    
     return (
         <div className={styles.user_card}>
             <Link to={`/user/${user.username}`}>
@@ -37,7 +113,13 @@ export default function ProfileCard({user}) {
                     </div>
                 )} 
             </div>
-            
+            {followIsVisible && (
+                <button className={styles.follow_btn} onClick={handleFollow}>
+                    {status.alreadyYouFollow && (`Seguindo`)}
+                    {!status.alreadyYouFollow && !status.alreadyFollowYou && (`Seguir`)}
+                    {!status.alreadyYouFollow && status.alreadyFollowYou && (`Seguir de volta`)}
+                </button>
+            )}
         </div>
     )
 }

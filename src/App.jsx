@@ -19,6 +19,7 @@ import AddProject from './components/pages/AddProject/AddProject';
 import EditProject from './components/pages/EditProject/EditProject';
 import ProjectView from './components/pages/ProjectView/ProjectView';
 import User from './components/pages/User/User';
+import Connection from './components/pages/Connection/Connection';
 
 //Context 
 import { UserProvider } from './context/UserContext';
@@ -44,6 +45,7 @@ function App() {
             <Route path='/me/projects/update/:id' element={ <EditProject /> }/>
             <Route path='/projects/:id' element={ <ProjectView /> }/>
             <Route path='/user/:username' element={<User /> }/>
+            <Route path='/user/:username/connections' element={<Connection /> }/>
           </Routes>
         </Container>
       </UserProvider>

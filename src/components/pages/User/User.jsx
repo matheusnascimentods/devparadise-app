@@ -6,26 +6,58 @@ import { toast } from 'react-toastify';
 //API
 import axios from 'axios';
 
-//components
-import Profile from '../../Profile/Profile';
+//styles
+import defaultPfp from '../../../assets/img/pfp-default.jpg';
+import styles from '../Me/Me.module.css'
+
+//Components
+import { Link } from 'react-router-dom';
+import RoundedImage from '../../RoundedImage/RoundedImage';
+import Badges from '../../Badges/Badges';
+import SmallCardContainer from '../../SmallCardConstainer/SmallCardContainer';
+import Divider from '../../Divider/Divider';
+
+//Icons
+import { RxGithubLogo } from "react-icons/rx";
+import { MdEmail } from "react-icons/md";
+import { FaLinkedin } from "react-icons/fa";
+import { FaCircle } from "react-icons/fa";
 
 export default function User() {
     const {username} = useParams();
     const [user, setUser] = useState({});
     const [projects, setProjects] = useState([]);
     const [status, setStatus] = useState({});
-    const [token] = useState(localStorage.getItem('token') || undefined);   
+    const [following, setFollowing] = useState(0);
+    const [followers, setFollowers] = useState(0);
+    const [token] = useState(localStorage.getItem('token'));   
     const navigate = useNavigate();
 
     useEffect(() => {
+        axios.all([
+            axios.get(`${import.meta.env.VITE_API_URL}/user?username=${username}`),
+            axios.get(`${import.meta.env.VITE_API_URL}/project?author=${username}`),
+        ])
+        .then(axios.spread((userResponse, projectsResponse) => {
+            setUser(userResponse.data.data);
+            setProjects(projectsResponse.data);
+            setFollowers(userResponse.data.followers);
+            setFollowing(userResponse.data.following);
+        }))
+        .catch((err) => {})
+    }, []);
+
+    useEffect(() => {
         if (token != undefined) {
-            axios.get(`${import.meta.env.VITE_API_URL}/user/me`, { headers: { Authorization: `Bearer ${JSON.parse(token)}` }})
+            
+            axios.get(`${import.meta.env.VITE_API_URL}/user/me`, { headers: { 
+                Authorization: `Bearer ${JSON.parse(token)}` }})
             .then((response) => {
                 if (response.data.dev.username == username) {
                     navigate('/me')
                 }
             })
-
+    
             axios.get(`${import.meta.env.VITE_API_URL}/connection/${username}/status`, { headers: { Authorization: `Bearer ${JSON.parse(token)}` }})
             .then((response) => {
                 setStatus({
@@ -34,17 +66,7 @@ export default function User() {
                 });
             });
         }
-
-        axios.all([
-            axios.get(`${import.meta.env.VITE_API_URL}/user?username=${username}`),
-            axios.get(`${import.meta.env.VITE_API_URL}/project?author=${username}`),
-        ])
-        .then(axios.spread((userResponse, projectsResponse) => {
-            setUser(userResponse.data.data);
-            setProjects(projectsResponse.data);
-        }))
-        .catch((err) => {})
-    }, []);
+    }, [token])
 
     async function handleFollow() {
         if (token == undefined) {
@@ -64,10 +86,8 @@ export default function User() {
                     position: "bottom-right",
                     theme: "dark"
                 });
-                setStatus({ 
-                    alreadyYouFollow: !status.alreadyYouFollow,
-                    alreadyFollowYou: status.alreadyFollowYou,
-                });
+                updateStatus();
+                setFollowers(followers - 1);
             }).catch((error) => {
                 toast.error(error.data.message, {
                     position: "bottom-right",
@@ -89,10 +109,8 @@ export default function User() {
                     position: "bottom-right",
                     theme: "dark"
                 });
-                setStatus({ 
-                    alreadyYouFollow: !status.alreadyYouFollow,
-                    alreadyFollowYou: status.alreadyFollowYou,
-                });
+                updateStatus();
+                setFollowers(followers + 1);
             }).catch((error) => {
                 toast.error(error.data.message, {
                     position: "bottom-right",
@@ -102,5 +120,90 @@ export default function User() {
         }
     }
 
-    return (<Profile user={user} projects={projects} myProfile={false} handleFollow={handleFollow} status={status} />);
+    async function updateStatus() {
+        setStatus({ 
+            alreadyYouFollow: !status.alreadyYouFollow,
+            alreadyFollowYou: status.alreadyFollowYou,
+        });
+    }
+
+    return (
+        <section className={styles.card}>
+        {console.l}
+            <span><h1>Perfil de {user.username}</h1></span>
+            <div className={styles.card_info}>
+                <div className={styles.info_sidebar}>
+                    <div className={styles.pfp}>
+                        {user.image ? (
+                            <RoundedImage src={`${import.meta.env.VITE_API_URL}/images/users/${user.image}`} alt="Foto de perfil" />
+                        ) : (
+                            <RoundedImage src={defaultPfp} alt="Foto de perfil" />
+                        )}
+                    </div>
+                    <div className={styles.info}>
+                        <button className={styles.follow_btn} onClick={handleFollow}>
+                            {status.alreadyYouFollow && (`Seguindo`)}
+                            {!status.alreadyYouFollow && !status.alreadyFollowYou && (`Seguir`)}
+                            {!status.alreadyYouFollow && status.alreadyFollowYou && (`Seguir de volta`)}
+                        </button>
+                        <h3>Informações</h3>
+                        <div className={styles.contact}>
+                            <ul>
+                                <li>
+                                    <MdEmail color='F5A904'/>
+                                    <p>{user.email}</p>
+                                </li>
+                                {user.github && (
+                                    <li>
+                                        <Link to={`https://github.com/${user.github}`} target='_blank'>
+                                            <RxGithubLogo color='F5A904' />
+                                            <p>{user.github}</p>
+                                        </Link>
+                                    </li>
+                                )}
+                                {user.linkedin && (
+                                    <li>
+                                        <Link to={user.linkedin} target='_blank'>
+                                            <FaLinkedin color='F5A904' />
+                                            <p>Linkedin</p>
+                                        </Link>
+                                    </li>
+                                )}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div className={styles.info_body}>
+                    <div className={styles.info_header}>
+                        <div className={styles.title}>
+                            <p className={styles.name}>{user.name}</p>
+                            <p className={styles.username}>@{user.username}</p>
+                        </div>
+                        <div className={styles.connection}>
+                            <Link to='connections?tab=1'>
+                                <p>{followers} Seguidores</p>
+                            </Link>
+                            <FaCircle color='ffb300' size={7} />
+                            <Link to='connections?tab=2'>
+                                <p>{following} Seguindo</p>
+                            </Link>
+                        </div>
+                        <Divider />
+                        <div className={styles.description}>
+                            <p>{user.description}</p>
+                        </div>
+                        {user.skils && (<Badges list={user.skils} />)}
+                        {projects.total > 0 && (
+                            <>
+                                <span className={styles.span}>
+                                    <p>Todos os projetos de {user.name}</p>
+                                </span>
+                                <SmallCardContainer data={projects.projects} />
+                            </>
+                        )}
+                    </div>
+                </div>
+            </div>
+    </section>
+    );
 }
