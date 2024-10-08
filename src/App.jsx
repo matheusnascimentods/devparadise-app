@@ -10,6 +10,7 @@ import Home from './components/pages/Home/Home';
 import Search from './components/pages/Search/Search';
 import Login from './components/pages/Auth/Login';
 import Signup from './components/pages/Auth/Signup';
+import Posts from './components/pages/Posts/Posts';
 import Me from './components/pages/Me/Me';
 import UpdateUser from './components/pages/UpdateUser/UpdateUser';
 import DeleteUser from './components/pages/DeleteUser/DeleteUser';
@@ -43,6 +44,7 @@ function App() {
             <Route path='/me/projects' element={ <MyProjects /> }/>
             <Route path='/me/projects/new' element={ <AddProject /> }/>
             <Route path='/me/projects/update/:id' element={ <EditProject /> }/>
+            <Route path='/me/connections/posts' element={ <Posts /> }/>
             <Route path='/projects/:id' element={ <ProjectView /> }/>
             <Route path='/user/:username' element={<User /> }/>
             <Route path='/user/:username/connections' element={<Connection /> }/>

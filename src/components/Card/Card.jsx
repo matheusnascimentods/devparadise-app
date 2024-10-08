@@ -9,15 +9,6 @@ import styles from './Card.module.css'
 import { Link } from 'react-router-dom';
 
 export default function Card({data}) {
-  const [author, setAuthor] = useState({});
-
-  useEffect(() => {
-      axios.get(`${import.meta.env.VITE_API_URL}/user?id=${data.devId}`)
-      .then((response) => {
-        setAuthor(response.data.data);
-      });
-  });
-  
   return (
     <div className={styles.card}>
       <Link to={`/projects/${data._id}`}>
@@ -32,7 +23,7 @@ export default function Card({data}) {
         <p>{data.description}</p>
       </div>
       <span className={styles.author}>
-        <Link to={`/user/${author.username}`}>Feito por <span>@{author.username}</span></Link>
+        <Link to={`/user/${data.devUsername}`}>Feito por <span>@{data.devUsername}</span></Link>
       </span>
     </div>
   )

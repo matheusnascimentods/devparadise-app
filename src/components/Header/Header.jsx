@@ -42,9 +42,8 @@ export default function Header() {
           setUser(response.data.dev);
           setSrc(`${import.meta.env.VITE_API_URL}/images/users/${response.data.dev.image}`);
       });
-      
     }  
-  }, []);
+  }, [token]);
 
   return (
     <header>
@@ -76,6 +75,8 @@ export default function Header() {
             <ul>
               {authenticated ? (
               <>
+                <Nav.Link href="/me/connections/posts">Projetos de Quem Você Segue</Nav.Link>
+                <Divider />
                 <Nav.Link className={styles.nav_item} href="/me">Meu perfil</Nav.Link>
                 <Nav.Link className={styles.nav_item} href="/me/update">Editar pefil</Nav.Link>
                 <Divider />

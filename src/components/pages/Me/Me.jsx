@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 //API
 import axios from 'axios';
-import Profile from '../../Profile/Profile';
 
 //styles
 import defaultPfp from '../../../assets/img/pfp-default.jpg';
