@@ -21,6 +21,7 @@ import EditProject from './components/pages/EditProject/EditProject';
 import ProjectView from './components/pages/ProjectView/ProjectView';
 import User from './components/pages/User/User';
 import Connection from './components/pages/Connection/Connection';
+import UserProjects from './components/pages/UserProjects/UserProjects';
 
 //Context 
 import { UserProvider } from './context/UserContext';
@@ -48,6 +49,7 @@ function App() {
             <Route path='/projects/:id' element={ <ProjectView /> }/>
             <Route path='/user/:username' element={<User /> }/>
             <Route path='/user/:username/connections' element={<Connection /> }/>
+            <Route path='/user/:username/projects' element={<UserProjects /> }/>
           </Routes>
         </Container>
       </UserProvider>

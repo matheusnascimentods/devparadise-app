@@ -127,6 +127,9 @@
 .connection svg {
     margin: 0 1em;
 }
+.span a {
+    color: var(--yellow);
+}
 @media only screen and (max-width: 1140px) {
     .card_info {
         flex-direction: column;

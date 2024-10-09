@@ -129,7 +129,6 @@ export default function User() {
 
     return (
         <section className={styles.card}>
-        {console.l}
             <span><h1>Perfil de {user.username}</h1></span>
             <div className={styles.card_info}>
                 <div className={styles.info_sidebar}>
@@ -196,7 +195,9 @@ export default function User() {
                         {projects.total > 0 && (
                             <>
                                 <span className={styles.span}>
-                                    <p>Todos os projetos de {user.name}</p>
+                                    <Link to='projects'>
+                                        <p>Todos os projetos de {user.name}</p>
+                                    </Link>
                                 </span>
                                 <SmallCardContainer data={projects.projects} />
                             </>

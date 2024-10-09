@@ -99,7 +99,7 @@ export default function MyProjects() {
         }
 
         if (e.target.value === "") {
-            axios.get(`${import.meta.env.VITE_API_URL}/project/me`, {
+            await axios.get(`${import.meta.env.VITE_API_URL}/project/me`, {
                 headers: {
                     Authorization: `Bearer ${JSON.parse(token)}`,
                 },
@@ -112,7 +112,7 @@ export default function MyProjects() {
     }
 
     return (
-        <section className={styles.my_projects_section}>
+        <section className={styles.user_projects_section}>
             <h2>Meus projetos</h2>
             <div className={styles.search}>
                 <Searchbar id='searchbar' handleKeyDown={handleKeyDown} placeholder='Encontre um projeto'/>

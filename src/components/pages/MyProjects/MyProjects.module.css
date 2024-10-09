@@ -1,4 +1,4 @@
-.my_projects_section {
+.user_projects_section {
     max-width: 770px;
     width: 100%;
     display: flex;
@@ -11,10 +11,10 @@
     justify-content: space-between;
     margin-bottom: 1em;
 }
-.my_projects_section .search div {
+.user_projects_section .search div {
     margin: 0;
 }
-.my_projects_section .search div div {
+.user_projects_section .search div div {
     width: 100%;
 }
 .btn {
