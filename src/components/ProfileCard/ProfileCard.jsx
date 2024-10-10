@@ -53,7 +53,7 @@ export default function ProfileCard({user, followIsVisible}) {
                 });
                 updateStatus();
             }).catch((error) => {
-                toast.error(error.data.message, {
+                toast.error(error.response.data.message, {
                     position: "bottom-right",
                     theme: "dark"
                 });
@@ -75,7 +75,7 @@ export default function ProfileCard({user, followIsVisible}) {
                 });
                 updateStatus();
             }).catch((error) => {
-                toast.error(error.data.message, {
+                toast.error(error.response.data.message, {
                     position: "bottom-right",
                     theme: "dark"
                 });

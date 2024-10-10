@@ -93,7 +93,7 @@ export default function MyProjects() {
                 },
             })
             .then((response) => {
-                setProjects(response.data.data);
+                setProjects(response.data.projects);
                 response.data.total > 1 ? setResults(`${response.data.total} Resultados encontrados`) : setResults(`${response.data.total} Resultado encontrado`);
             });
         }

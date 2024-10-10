@@ -30,7 +30,7 @@ export default function UpdateUser() {
       },
     })
     .then((response) => {
-      setUser(response.data.dev)
+      setUser(response.data.user)
     });
 
   }, [token]);

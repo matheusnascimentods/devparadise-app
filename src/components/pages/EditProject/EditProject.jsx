@@ -19,7 +19,7 @@ export default function EditProject() {
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_API_URL}/project?id=${id}`)
         .then((response) => {
-            setProject(response.data.data);
+            setProject(response.data.project);
         })
     }, [token]);
 

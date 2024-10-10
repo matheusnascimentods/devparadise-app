@@ -32,7 +32,7 @@ export default function Search() {
             setProjects(projectsResponse.data);
             setUsers(usersResponse.data);
         }));
-    });
+    }, [query]);
     
     async function handleKeyDown(e) {
         if (e.key === "Enter") {
@@ -47,32 +47,28 @@ export default function Search() {
                 <div className={styles.results_container}>
                     <Tabs defaultActiveKey="1" appearance="pills">
                         <Tabs.Tab eventKey="1" title={`Todos (${projects.total + users.total})`}>                            
-                            {users.total > 0 ? (             
+                            {users.total > 0 && (             
                                 <div className={styles.users_container}>
                                     <h4>Usuarios</h4>
-                                    {Array.from(users.data).map((user) => <ProfileCard user={user} />)}
+                                    {Array.from(users.users).map((user) => <ProfileCard user={user} key={user._id} />)}
                                     
                                 </div>
-                            ) : (
-                                <></>
                             )}
-                            {projects.total > 0  ? (
+                            {projects.total > 0  && (
                                 <div className={styles.projects_container}>
                                     <h4>Projetos</h4>   
-                                    {Array.from(projects.data).map((project) => <Project project={project} key={project._id}  myProject={false}/>)}
+                                    {Array.from(projects.projects).map((project) => <Project project={project} key={project._id}  myProject={false}/>)}
                                 </div>
-                            ) : (
-                                <></>
                             )}
-                            {!users.total > 0 && !projects.total > 0 ? (
+                            {!users.total > 0 && !projects.total > 0 && (
                                 <p>Nada encontrado</p>
-                            ) : (<></>)}
+                            )}
                         </Tabs.Tab>
                         <Tabs.Tab eventKey="2" title={`Usuários (${users.total})`}>                            
                             {users.total > 0 ? (             
                                 <div className={styles.users_container}>
                                     <h4>Usuarios</h4>
-                                    {Array.from(users.data).map((user) => <ProfileCard user={user} />)}
+                                    {Array.from(users.users).map((user) => <ProfileCard user={user} />)}
                                     
                                 </div>
                             ) : (
@@ -83,7 +79,7 @@ export default function Search() {
                             {projects.total > 0  ? (
                                 <div className={styles.projects_container}>
                                     <h4>Projetos</h4>   
-                                    {Array.from(projects.data).map((project) => <Project project={project} key={project._id}  myProject={false}/>)}
+                                    {Array.from(projects.projects).map((project) => <Project project={project} key={project._id}  myProject={false}/>)}
                                 </div>
                             ) : (
                                 <p>A sua pesquisa não bate com nenhum projeto!</p>

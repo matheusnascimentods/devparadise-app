@@ -30,9 +30,9 @@ export default function Project({project, handleDelete, handleFavorite, myProjec
   useEffect(() => {
     axios.get(`${import.meta.env.VITE_API_URL}/user?id=${project.devId}`)
     .then((response) => {
-      setUser(response.data.data);
+      setUser(response.data.user);
     });
-  });
+  }, []);
 
   async function handleOnClick() {
     await handleDelete(project);

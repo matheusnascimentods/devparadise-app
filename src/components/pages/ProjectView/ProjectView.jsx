@@ -28,8 +28,8 @@ export default function ProjectView() {
   useEffect(() => {
     axios.get(`${import.meta.env.VITE_API_URL}/project?id=${id}`)
     .then((response) => {
-      setProject(response.data.data);
-      setImages(response.data.data.images)
+      setProject(response.data.project);
+      setImages(response.data.project.images)
       setUser(response.data.user);
     });
   }, [id]);

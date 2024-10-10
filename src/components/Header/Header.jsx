@@ -39,8 +39,8 @@ export default function Header() {
           },
       })
       .then((response) => {
-          setUser(response.data.dev);
-          setSrc(`${import.meta.env.VITE_API_URL}/images/users/${response.data.dev.image}`);
+          setUser(response.data.user);
+          setSrc(`${import.meta.env.VITE_API_URL}/images/users/${response.data.user.image}`);
       });
     }  
   }, [token]);

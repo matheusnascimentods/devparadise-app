@@ -39,7 +39,7 @@ export default function User() {
             axios.get(`${import.meta.env.VITE_API_URL}/project?author=${username}`),
         ])
         .then(axios.spread((userResponse, projectsResponse) => {
-            setUser(userResponse.data.data);
+            setUser(userResponse.data.user);
             setProjects(projectsResponse.data);
             setFollowers(userResponse.data.followers);
             setFollowing(userResponse.data.following);
@@ -53,7 +53,7 @@ export default function User() {
             axios.get(`${import.meta.env.VITE_API_URL}/user/me`, { headers: { 
                 Authorization: `Bearer ${JSON.parse(token)}` }})
             .then((response) => {
-                if (response.data.dev.username == username) {
+                if (response.data.user.username == username) {
                     navigate('/me')
                 }
             })

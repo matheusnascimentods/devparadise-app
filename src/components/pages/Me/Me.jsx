@@ -35,7 +35,7 @@ export default function Me() {
             axios.get(`${import.meta.env.VITE_API_URL}/project/me`, { headers: { Authorization: `Bearer ${JSON.parse(token)}` }}),
         ])
         .then(axios.spread((userResponse, projectsResponse) => {
-            setUser(userResponse.data.dev);
+            setUser(userResponse.data.user);
             setFollowing(userResponse.data.following);
             setFollowers(userResponse.data.followers);
             setProjects(projectsResponse.data);

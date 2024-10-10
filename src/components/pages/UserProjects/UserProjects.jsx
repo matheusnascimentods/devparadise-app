@@ -23,7 +23,7 @@ export default function UserProjects() {
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_API_URL}/user?username=${username}`)
         .then((response) => {
-            setUser(response.data.data);
+            setUser(response.data.user);
             setProjects(response.data.projects);
         })
         .catch((error) => console.error(error));
