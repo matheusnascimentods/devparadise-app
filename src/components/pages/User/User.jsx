@@ -14,7 +14,6 @@ import styles from '../Me/Me.module.css'
 import { Link } from 'react-router-dom';
 import RoundedImage from '../../RoundedImage/RoundedImage';
 import Badges from '../../Badges/Badges';
-import SmallCardContainer from '../../SmallCardConstainer/SmallCardContainer';
 import Divider from '../../Divider/Divider';
 
 //Icons
@@ -22,6 +21,7 @@ import { RxGithubLogo } from "react-icons/rx";
 import { MdEmail } from "react-icons/md";
 import { FaLinkedin } from "react-icons/fa";
 import { FaCircle } from "react-icons/fa";
+import Card from '../../Card/Card';
 
 export default function User() {
     const {username} = useParams();
@@ -199,7 +199,11 @@ export default function User() {
                                         <p>Todos os projetos de {user.name}</p>
                                     </Link>
                                 </span>
-                                <SmallCardContainer data={projects.projects} />
+                                <div className={styles.cards_container}>  
+                                    {projects.projects.map((project) => (
+                                        <Card data={project} color={'#16171B'} key={project._id} size={"sm"} showUsername={false} showFixed={true}/>
+                                    ))}
+                                </div>
                             </>
                         )}
                     </div>

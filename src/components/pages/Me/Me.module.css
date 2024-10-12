@@ -7,7 +7,11 @@
     display: flex;
     flex-direction: column;
 }
-.card span {
+.sm {
+    max-width: 48%;
+    width: 90%;
+}
+.card > span {
     margin-bottom: 30px;
 }
 .card span h1 {
@@ -106,10 +110,12 @@
     display: flex;
     align-items: center;
     color: var(--yellow);
+    margin-bottom: 30px;
 }
 .span p {
     font-size: 1.2em;
     font-weight: 800;
+    margin: 0   ;
 }
 .follow_btn {
     font-weight: 800;
@@ -129,6 +135,11 @@
 }
 .span a {
     color: var(--yellow);
+}
+.cards_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 @media only screen and (max-width: 1140px) {
     .card_info {

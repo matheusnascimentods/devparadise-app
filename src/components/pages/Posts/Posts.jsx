@@ -24,7 +24,7 @@ export default function Posts() {
             <div className={styles.cards_container}>
                 {posts.total > 0 && (
                     posts.projects.map((project) => (
-                        <Card data={project} key={project._id} />
+                        <Card data={project} key={project._id} color={'#21242A'} size={"bg"} showUsername={true} showFixed={false}/>
                     ))
                 )}
             </div>

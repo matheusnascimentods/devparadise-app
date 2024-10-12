@@ -35,7 +35,7 @@ export default function Home() {
       <Searchbar placeholder='Busque por um projeto ou por outro DEV' handleKeyDown={handleKeyDown} />
       <div className={styles.cards_container}>
         {projects.map((data) => (
-              <Card data={data} key={data._id} />
+              <Card data={data} key={data._id} color={'#21242A'} size={"bg"} showUsername={true} showFixed={false}/>
           ))
         }
       </div>  
