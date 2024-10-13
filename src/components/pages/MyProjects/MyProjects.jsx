@@ -124,7 +124,7 @@ export default function MyProjects() {
             <Divider/>
             <span className={styles.results}>{results}</span>
             <div className={styles.list_projects}>
-                {Array.from(projects).map((project) => <Project project={project} key={project._id} handleDelete={handleDelete} handleFavorite={handleFavorite} myProject={true} />)}
+                {Array.from(projects).map((project) => <Project project={project} key={project._id} handleDelete={handleDelete} handleFavorite={handleFavorite} myProject={true} showPin={true}/>)}
             </div>
         </section>
     )

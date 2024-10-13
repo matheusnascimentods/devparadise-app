@@ -39,3 +39,8 @@
 .results {
     margin-bottom: 1em;
 }
+@media (max-width: 560px) {
+    .list_projects > div > div > div {
+        margin-right: 1em;
+    }
+}

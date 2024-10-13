@@ -51,3 +51,11 @@
     height: 50px;
     width: 50px;
 }
+@media (max-width: 700px) {
+    .project_item > .info {
+        overflow: hidden;
+    }
+    .project_item > .info > .technologies_container > svg {
+        display: none;
+    }
+}

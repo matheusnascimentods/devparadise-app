@@ -56,6 +56,44 @@
     margin-bottom: 20px;
     font-weight: 700;
     height: 40px;
-    max-width: 120px;
-    width: 100%;
+    width: 120px;
+}
+@media (max-width: 700px) {
+    .user_card {
+        flex-direction: column;
+    }
+    .user_card > a {
+        margin-bottom: 2em;
+    }
+    .user_card > .card_info {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin: 0;
+    }
+    .user_card > .card_info > a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .user_card > .card_info > .skils {
+        display: flex;
+        justify-content: center;
+    }
+    .user_card > .card_info > .skils svg {
+        display: none;
+    }
+    .user_card > .card_info > .skils ul {
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .follow_btn {
+        margin-top: 1em;
+    }
+    .follow_btn {
+        width: 100%;
+    }
 }

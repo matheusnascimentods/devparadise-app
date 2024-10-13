@@ -17,10 +17,9 @@ import { Link } from 'react-router-dom';
 import RoundedImage from '../RoundedImage/RoundedImage';
 
 //Icons 
-import { IoMdHeart } from "react-icons/io";
 import { BsPinAngleFill } from "react-icons/bs";
 
-export default function Project({project, handleDelete, handleFavorite, myProject}) {
+export default function Project({project, handleDelete, handleFavorite, myProject, showPin}) {
   //modal
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -44,7 +43,7 @@ export default function Project({project, handleDelete, handleFavorite, myProjec
       <div className={styles.project_item}>
         <div className={styles.info}>
           <span>
-            {project.favorite == true && (
+            {project.favorite == true && showPin == true && (
               <BsPinAngleFill size={18} />
             )}
             <Link to={`/projects/${project._id}`}>

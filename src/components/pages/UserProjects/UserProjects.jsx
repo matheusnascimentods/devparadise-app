@@ -56,7 +56,7 @@ export default function UserProjects() {
             <Divider />
             <span className={styles.results}>{results}</span>
             <div className={styles.list_projects}>
-                {Array.from(projects).map((project) => <Project project={project} key={project._id} />)}
+                {Array.from(projects).map((project) => <Project project={project} key={project._id} showPin={true}/>)}
             </div>
         </section>
     )

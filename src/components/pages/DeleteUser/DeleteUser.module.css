@@ -69,3 +69,33 @@
     background-color: #c1121ed3;
     transition: 1s all;
 }
+@media only screen and (max-width: 730px) { 
+    .delete_section {
+        padding: 3em;
+    }
+    .delete_section .card .card_header h1 {
+        font-size: 1.3em;
+    }
+    .delete_section .card .card_body p {
+        font-size: .9em;
+    }
+    .delete_section label {
+        font-size: 1em;
+    }
+}
+@media only screen and (max-width: 550px) { 
+    .delete_section .card .card_body p {
+        font-size: .8em;
+    }
+}
+@media only screen and (max-width: 500px) { 
+    .delete_section {
+        padding: 2em;
+    }
+    .buttons {
+        height: 40px;
+    }
+    .buttons button {
+        font-size: .8em;
+    }
+}

@@ -57,7 +57,7 @@ export default function Search() {
                             {projects.total > 0  && (
                                 <div className={styles.projects_container}>
                                     <h4>Projetos</h4>   
-                                    {Array.from(projects.projects).map((project) => <Project project={project} key={project._id}  myProject={false}/>)}
+                                    {Array.from(projects.projects).map((project) => <Project project={project} key={project._id}  myProject={false} showPin={false}/>)}
                                 </div>
                             )}
                             {!users.total > 0 && !projects.total > 0 && (
@@ -79,7 +79,7 @@ export default function Search() {
                             {projects.total > 0  ? (
                                 <div className={styles.projects_container}>
                                     <h4>Projetos</h4>   
-                                    {Array.from(projects.projects).map((project) => <Project project={project} key={project._id}  myProject={false}/>)}
+                                    {Array.from(projects.projects).map((project) => <Project project={project} key={project._id}  myProject={false} showPin={false}/>)}
                                 </div>
                             ) : (
                                 <p>A sua pesquisa não bate com nenhum projeto!</p>

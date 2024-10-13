@@ -46,3 +46,16 @@
 .form_span, .form_span a {
     font-size: 0.9em;
 }
+@media only screen and (max-width: 600px) { 
+    .form_container form h1 {
+        font-size: 1.5em;
+    }
+}
+@media only screen and (max-width: 500px) { 
+    .form_span {
+        font-size: .8em;
+    }
+    .form_container form input[type=submit] {
+        font-size: .8em;
+    }
+}
