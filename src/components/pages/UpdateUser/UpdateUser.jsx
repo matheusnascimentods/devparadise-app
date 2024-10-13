@@ -84,6 +84,7 @@ export default function UpdateUser() {
         theme: "dark"
       });
       navigate('/me');
+      window.location.reload();
     })
     .catch((error) => {
       toast.error('Preencha todos os campos!', {

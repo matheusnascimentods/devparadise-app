@@ -15,10 +15,10 @@ import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import RoundedImage from '../RoundedImage/RoundedImage';
 import Nav from 'react-bootstrap/Nav';
+import Divider from '../Divider/Divider';
 
 //API
 import axios from 'axios';
-import Divider from '../Divider/Divider';
 
 export default function Header() {
 
@@ -40,10 +40,12 @@ export default function Header() {
       })
       .then((response) => {
           setUser(response.data.user);
-          setSrc(`${import.meta.env.VITE_API_URL}/images/users/${response.data.user.image}`);
+          if (user.image != undefined) {
+            setSrc(`${import.meta.env.VITE_API_URL}/images/users/${user.image}`);
+          }
       });
     }  
-  }, [token]);
+  }, [authenticated]);
 
   return (
     <header>
@@ -52,16 +54,19 @@ export default function Header() {
           <img src={Logo} alt="Devparadise" />
         </Link>
         <Button onClick={handleShow} >
-          <Suspense fallback={<p>Carregando...</p>}>
-            <RoundedImage src={src} alt="Foto de perfil" />
-          </Suspense>
+            <RoundedImage src={authenticated && user.image != undefined ? (
+              `${import.meta.env.VITE_API_URL}/images/users/${user.image}`
+            ) : (
+              defaultPfp
+            )} 
+            alt="Foto de perfil" />
         </Button>
         <Offcanvas show={show} onHide={handleClose} placement='end'>
           <Offcanvas.Header closeButton>
             <Offcanvas.Title>
               {authenticated && (
                 <>
-                  {user.image ? (
+                  {user.image != undefined ? (
                     <RoundedImage src={`${import.meta.env.VITE_API_URL}/images/users/${user.image}`} alt="Foto de perfil" />
                     ) : (
                     <RoundedImage src={defaultPfp} alt="Foto de perfil" />

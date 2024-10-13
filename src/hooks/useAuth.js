@@ -59,6 +59,8 @@ export default function useAuth() {
                 position: "bottom-right",
                 theme: "dark"
             });
+
+            navigate('/');
         } catch (error) {
             toast.error(error.response.data.message, {
                 position: "bottom-right",
@@ -71,6 +73,7 @@ export default function useAuth() {
         SetAuthenticated(true);
         localStorage.setItem('token', JSON.stringify(data.token))
         navigate('/');
+        window.location.reload();
     }
 
     async function logout() {

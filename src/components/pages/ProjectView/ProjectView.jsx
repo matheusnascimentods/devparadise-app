@@ -9,6 +9,9 @@ import styles from './ProjectView.module.css';
 import { formatDate } from '../../../utils/dateUtils';
 import 'rsuite/Carousel/styles/index.css';
 
+//images
+import defaultPhoto from '../../../assets/img/vasco.jpg'
+
 //components
 import { Carousel } from 'rsuite';
 import Badges from '../../Badges/Badges';
@@ -43,11 +46,15 @@ export default function ProjectView() {
         </div>
         <div className={styles.card_body}>
           <div className={styles.card_carousel}>
-            {images && (
+            {images.length > 0 ? (
               <Carousel autoplay className="custom-slider">
                 {images.map((image) => (
                   <img src={`${import.meta.env.VITE_API_URL}/images/projects/${image}`} alt='imagem' key={image}/>
                 ))}
+              </Carousel>
+            ) : (
+              <Carousel autoplay className="custom-slider">
+                  <img src={defaultPhoto} alt='imagem' />
               </Carousel>
             )}
           </div>

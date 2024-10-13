@@ -54,3 +54,26 @@
 .links .github a {
     margin-right: 2em;
 }
+@media (max-width: 800px) {
+    .info_section {
+        padding: 3em 2em;
+    }
+}
+@media (max-width: 580px) {
+    .links {
+        flex-direction: column;
+    }
+    .links .github a, .links .link a {
+        margin-bottom: 1em;
+        font-size: .8em;
+    }
+    .card_header h1 {
+        font-size: 1.3em;
+    }
+    .card_header span {
+        font-size: .8em;
+    }
+    .description {
+        font-size: .9em;
+    }
+}
