@@ -110,7 +110,7 @@ export default function Me() {
                         <p>{user.description}</p>
                     </div>
                     {user.skils && (<Badges list={user.skils} />)}
-                    {projects.total > 0 && (
+                    {projects.total > 0 ? (
                         <>
                             <span className={styles.span}>
                                 <Link to={'projects'}>
@@ -123,6 +123,10 @@ export default function Me() {
                                 ))}
                             </div>
                         </>
+                    ) : (
+                        <p className={styles.create_project}>
+                            O seu perfil está vazio jovem Dev, <Link to={'projects/new'}>clique aqui</Link>  para adicionar um novo projeto!
+                        </p>
                     )}
                 </div>
             </div>

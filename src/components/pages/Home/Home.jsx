@@ -31,7 +31,7 @@ export default function Home() {
 
   return (
     <section className={styles.home}>
-      <h2>Buscar</h2>
+      <h2>Você está no Paradise!</h2>
       <Searchbar placeholder='Busque por um projeto ou por outro DEV' handleKeyDown={handleKeyDown} />
       <div className={styles.cards_container}>
         {projects.map((data) => (
