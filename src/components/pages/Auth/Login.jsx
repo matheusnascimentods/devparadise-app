@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 
 //styles
 import styles from '../../form/Form.module.css';
-import img from '../../../assets/img/image.png';
 
 //Components
 import Input from '../../form/Input';
@@ -26,10 +25,6 @@ export default function Login() {
 
   function handleChange(e) {
     setUser({...user, [e.target.name]: e.target.value});
-  }
-
-  function handleOption(e) {
-    setUser({...user, option: e.target.options[e.target.selectdIndex].text})
   }
 
   function handleSubmit(e) {

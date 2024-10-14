@@ -10,6 +10,7 @@ import Home from './components/pages/Home/Home';
 import Search from './components/pages/Search/Search';
 import Login from './components/pages/Auth/Login';
 import Signup from './components/pages/Auth/Signup';
+import About from './components/About/About';
 import Posts from './components/pages/Posts/Posts';
 import Me from './components/pages/Me/Me';
 import UpdateUser from './components/pages/UpdateUser/UpdateUser';
@@ -38,6 +39,7 @@ function App() {
             <Route path='/search' element={ <Search /> }/>
             <Route path='/login' element={ <Login /> }/>
             <Route path='/signup' element={ <Signup /> }/>
+            <Route path='/about' element={ <About /> }/>
             <Route path='/me' element={ <Me /> }/>
             <Route path='/me/update' element={ <UpdateUser /> }/>
             <Route path='/me/delete' element={ <DeleteUser /> }/>
