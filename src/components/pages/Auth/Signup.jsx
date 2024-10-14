@@ -1,4 +1,5 @@
-import { useState, useContext, React } from 'react';
+import { useState, useContext, React, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 //styles
 import styles from '../../form/Form.module.css';
@@ -16,6 +17,14 @@ export default function Signup() {
 
   const [user, setUser] = useState({});
   const {register} = useContext(Context);
+  const [token] = useState(localStorage.getItem('token') || undefined);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (token != undefined) {
+      navigate('/');
+    }
+  }, [token])
 
   function handleChange(e) {
     setUser({...user, [e.target.name]: e.target.value});

@@ -1,6 +1,7 @@
 //Contexts
 import { Context } from '../../../context/UserContext';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 //styles
 import styles from '../../form/Form.module.css';
@@ -14,6 +15,14 @@ export default function Login() {
 
   const [user, setUser] = useState({});
   const {login} = useContext(Context);
+  const [token] = useState(localStorage.getItem('token') || undefined);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (token != undefined) {
+      navigate('/');
+    }
+  }, [token])
 
   function handleChange(e) {
     setUser({...user, [e.target.name]: e.target.value});
