@@ -17,6 +17,9 @@ import RoundedImage from '../RoundedImage/RoundedImage';
 import Nav from 'react-bootstrap/Nav';
 import Divider from '../Divider/Divider';
 
+//icons
+import { GiHamburgerMenu } from "react-icons/gi";
+
 //API
 import axios from 'axios';
 
@@ -54,12 +57,16 @@ export default function Header() {
           <img src={Logo} alt="Devparadise" />
         </Link>
         <Button onClick={handleShow} >
-            <RoundedImage src={authenticated && user.image != undefined ? (
+          {!authenticated ? (
+            <GiHamburgerMenu size={30} color='000'/>
+          ) : (
+            <RoundedImage src={user.image != undefined ? (
               `${import.meta.env.VITE_API_URL}/images/users/${user.image}`
             ) : (
               defaultPfp
             )} 
             alt="Foto de perfil" />
+          )}
         </Button>
         <Offcanvas show={show} onHide={handleClose} placement='end'>
           <Offcanvas.Header closeButton>
