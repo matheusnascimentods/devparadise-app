@@ -10,7 +10,7 @@ import Home from './components/pages/Home/Home';
 import Search from './components/pages/Search/Search';
 import Login from './components/pages/Auth/Login';
 import Signup from './components/pages/Auth/Signup';
-import About from './components/About/About';
+import About from './components/pages/About/About';
 import Posts from './components/pages/Posts/Posts';
 import Me from './components/pages/Me/Me';
 import UpdateUser from './components/pages/UpdateUser/UpdateUser';

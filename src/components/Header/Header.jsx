@@ -102,6 +102,8 @@ export default function Header() {
                 <> 
                   <Nav.Link href="/login">Login</Nav.Link>
                   <Nav.Link href="/signup">Cadastrar</Nav.Link>
+                  <Divider />
+                  <Nav.Link href="/about">Sobre</Nav.Link>
                 </>
               )}
             </ul>
