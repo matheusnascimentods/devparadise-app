@@ -44,7 +44,13 @@ export default function User() {
             setFollowers(userResponse.data.followers);
             setFollowing(userResponse.data.following);
         }))
-        .catch((err) => {})
+        .catch((err) => {
+            if (err.response) {
+                if (err.response.status === 404) {
+                    navigate('/404')
+                }
+            }
+        })
     }, []);
 
     useEffect(() => {

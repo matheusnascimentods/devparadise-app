@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 //API
 import axios from 'axios';
@@ -23,6 +24,7 @@ export default function Connection() {
   const [following, setFollowing] = useState({});
   const [followers, setFollowers] = useState({});
   const [message, setMessage] = useState(`Todas as conexões de @${username}`);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.all([
@@ -32,7 +34,14 @@ export default function Connection() {
     .then(axios.spread((followingResponse, followersResponse) => {
         setFollowing(followingResponse.data);
         setFollowers(followersResponse.data);
-    }));
+    }))
+    .catch((err) => {
+      if (err.response) {
+          if (err.response.status === 404) {
+              navigate('/404')
+          }
+      }
+    });
   }, [username]);
 
   async function handleKeyDown(e) {

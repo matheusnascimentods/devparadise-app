@@ -26,6 +26,7 @@ import UserProjects from './components/pages/UserProjects/UserProjects';
 
 //Context 
 import { UserProvider } from './context/UserContext';
+import NotFound from './components/pages/NotFound/NotFound';
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
             <Route path='/user/:username' element={<User /> }/>
             <Route path='/user/:username/connections' element={<Connection /> }/>
             <Route path='/user/:username/projects' element={<UserProjects /> }/>
+            <Route path='*' element={<NotFound /> }/>
           </Routes>
         </Container>
       </UserProvider>

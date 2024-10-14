@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 //API
 import axios from 'axios';
@@ -27,6 +27,7 @@ export default function ProjectView() {
   const [project, setProject] = useState({});
   const [images, setImages] = useState([]);
   const [user, setUser] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get(`${import.meta.env.VITE_API_URL}/project?id=${id}`)
@@ -34,6 +35,13 @@ export default function ProjectView() {
       setProject(response.data.project);
       setImages(response.data.project.images)
       setUser(response.data.user);
+    })
+    .catch((err) => {
+      if (err.response) {
+          if (err.response.status === 404 || err.response.status === 422) {
+            navigate('/404')
+          }
+      }
     });
   }, [id]);
 

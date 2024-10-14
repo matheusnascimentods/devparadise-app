@@ -19,6 +19,8 @@ export default function UserProjects() {
     const [user, setUser] = useState({});
     const [projects, setProjects] = useState([]);
     const [results, setResults] = useState('');
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_API_URL}/user?username=${username}`)
@@ -26,7 +28,13 @@ export default function UserProjects() {
             setUser(response.data.user);
             setProjects(response.data.projects);
         })
-        .catch((error) => console.error(error));
+        .catch((err) => {
+            if (err.response) {
+                if (err.response.status === 404) {
+                    navigate('/404')
+                }
+            }
+        });
     }, [username]);
 
     async function handleKeyDown(e) {

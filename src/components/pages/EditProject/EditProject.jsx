@@ -12,6 +12,7 @@ import InputTags from '../../Form/TagInput';
 export default function EditProject() {
 
     const [project, setProject] = useState({});
+    const [user, setUser] = useState({});
     const [token] = useState(localStorage.getItem('token') || undefined);
     let {id} = useParams();
     const navigate = useNavigate();
@@ -21,10 +22,26 @@ export default function EditProject() {
         navigate('/login');
         console.error('Para acessar está rota você deve estar logado!');
       }
-      axios.get(`${import.meta.env.VITE_API_URL}/project?id=${id}`)
-      .then((response) => {
-          setProject(response.data.project);
-      })
+
+      try {
+        axios.all([
+          axios.get(`${import.meta.env.VITE_API_URL}/user/me`, { headers: { Authorization: `Bearer ${JSON.parse(token)}` }}),
+          axios.get(`${import.meta.env.VITE_API_URL}/project?id=${id}`),
+        ])
+        .then(axios.spread((userResponse, projectResponse) => {
+          setProject(projectResponse.data.project);
+          setUser(userResponse.data.user);
+        }))   
+        .catch((err) => {
+          if (err.response) {
+            if (err.response.status === 404 || err.response.status === 422) {
+                navigate('/404')
+            }
+          }
+        })     
+      } catch (error) {
+        console.error(error); 
+      }
     }, [token]);
 
     function handleChange(e) {
