@@ -12,15 +12,19 @@ import InputTags from '../../Form/TagInput';
 export default function EditProject() {
 
     const [project, setProject] = useState({});
-    const [token] = useState(localStorage.getItem('token') || '');
+    const [token] = useState(localStorage.getItem('token') || undefined);
     let {id} = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}/project?id=${id}`)
-        .then((response) => {
-            setProject(response.data.project);
-        })
+      if (token == undefined) {
+        navigate('/login');
+        console.error('Para acessar está rota você deve estar logado!');
+      }
+      axios.get(`${import.meta.env.VITE_API_URL}/project?id=${id}`)
+      .then((response) => {
+          setProject(response.data.project);
+      })
     }, [token]);
 
     function handleChange(e) {

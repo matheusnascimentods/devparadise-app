@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 //API
@@ -14,8 +14,15 @@ import { toast } from 'react-toastify';
 export default function Changepassword({}) {
 
     const [data, setData] = useState({});
-    const [token] = useState(localStorage.getItem('token') || '');
+    const [token] = useState(localStorage.getItem('token') || undefined);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (token == undefined) {
+            navigate('/login');
+            console.error('Para acessar está rota você deve estar logado!');
+        }
+    }, [token]);
 
     function handleChange(e) {
         setData({...data, [e.target.name]: e.target.value})

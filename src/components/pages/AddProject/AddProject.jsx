@@ -13,8 +13,15 @@ import InputTags from '../../Form/TagInput';
 export default function AddProject() {
 
   const [project, setProject] = useState({});
-  const [token] = useState(localStorage.getItem(('token') || ''));
+  const [token] = useState(localStorage.getItem(('token') || undefined));
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (token == undefined) {
+        navigate('/login');
+        console.error('Para acessar está rota você deve estar logado!');
+    }
+  }, [token]);
 
   function handleChange(e) {
     setProject({...project, [e.target.name]: e.target.value});

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 //API
 import axios from 'axios';
@@ -11,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'rsuite/TagInput/styles/index.css';
 
 //Components
+import { toast } from 'react-toastify';
 import Input from '../../Form/Input';
 import RoundedImage from '../../RoundedImage/RoundedImage';
 import InputTags from '../../Form/TagInput';
@@ -20,19 +20,26 @@ export default function UpdateUser() {
 
   const [user, setUser] = useState({});
   const [preview, setPreview] = useState();
-  const [token] = useState(localStorage.getItem('token') || '');
+  const [token] = useState(localStorage.getItem('token') || undefined);
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API_URL}/user/me`, {
-      headers: {
-        Authorization: `Bearer ${JSON.parse(token)}`,
-      },
-    })
-    .then((response) => {
-      setUser(response.data.user)
-    });
-
+    if (token == undefined) {
+      navigate('/login');
+    }
+    
+    try {
+      axios.get(`${import.meta.env.VITE_API_URL}/user/me`, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(token)}`,
+        },
+      })
+      .then((response) => {
+        setUser(response.data.user)
+      });   
+    } catch (error) {
+      console.error('Para acessar está rota você deve estar logado!');
+    }
   }, [token]);
 
   function handleChange(e) {

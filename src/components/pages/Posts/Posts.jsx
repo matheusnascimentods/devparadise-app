@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 //API
 import axios from 'axios';
@@ -9,13 +11,22 @@ import Card from '../../Card/Card';
 
 export default function Posts() {
     const [posts, setPosts] = useState({});
-    const [token] = useState(localStorage.getItem('token') || '');
+    const [token] = useState(localStorage.getItem('token') || undefined);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}/connection/following/posts`, { headers: { Authorization: `Bearer ${JSON.parse(token)}` } })
-        .then((response) => {
-            setPosts(response.data);
-        });
+        if (token == undefined) {
+            navigate('/login');
+        }
+
+        try {
+            axios.get(`${import.meta.env.VITE_API_URL}/connection/following/posts`, { headers: { Authorization: `Bearer ${JSON.parse(token)}` } })
+            .then((response) => {
+                setPosts(response.data);
+            });
+        } catch (error) {
+            console.error('Para acessar está rota você deve estar logado!');
+        }
     }, [token]);
 
     return (

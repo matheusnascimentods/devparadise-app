@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 //API
 import axios from 'axios';
@@ -25,21 +26,30 @@ export default function Me() {
 
     const [user, setUser] = useState({});
     const [projects, setProjects] = useState([]);
-    const [token] = useState(localStorage.getItem('token') || '');
+    const [token] = useState(localStorage.getItem('token') || undefined);
     const [following, setFollowing] = useState(0);
     const [followers, setFollowers] = useState(0);
-    
+    const navigate = useNavigate();
+ 
     useEffect(() => {
-        axios.all([
-            axios.get(`${import.meta.env.VITE_API_URL}/user/me`, { headers: { Authorization: `Bearer ${JSON.parse(token)}` }}),
-            axios.get(`${import.meta.env.VITE_API_URL}/project/me`, { headers: { Authorization: `Bearer ${JSON.parse(token)}` }}),
-        ])
-        .then(axios.spread((userResponse, projectsResponse) => {
-            setUser(userResponse.data.user);
-            setFollowing(userResponse.data.following);
-            setFollowers(userResponse.data.followers);
-            setProjects(projectsResponse.data);
-        }));
+        if (token == undefined) {
+            navigate('/login');
+        }
+
+        try {
+            axios.all([
+                axios.get(`${import.meta.env.VITE_API_URL}/user/me`, { headers: { Authorization: `Bearer ${JSON.parse(token)}` }}),
+                axios.get(`${import.meta.env.VITE_API_URL}/project/me`, { headers: { Authorization: `Bearer ${JSON.parse(token)}` }}),
+            ])
+            .then(axios.spread((userResponse, projectsResponse) => {
+                setUser(userResponse.data.user);
+                setFollowing(userResponse.data.following);
+                setFollowers(userResponse.data.followers);
+                setProjects(projectsResponse.data);
+            }));
+        } catch (error) {
+            console.error('Para acessar está rota você deve estar logado!');
+        }
     }, [token]);
 
     return (

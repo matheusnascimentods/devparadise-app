@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Context } from '../../../context/UserContext';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 //API
 import axios from 'axios';
@@ -15,8 +16,16 @@ import Input from '../../Form/Input';
 export default function DeleteUser() {
 
     const [password, setPassword] = useState('');
-    const [token] = useState(localStorage.getItem('token') || '');
-    const {logout} = useContext(Context)
+    const [token] = useState(localStorage.getItem('token') || undefined);
+    const {logout} = useContext(Context);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (token == undefined) {
+            navigate('/login');
+            console.error('Para acessar está rota você deve estar logado!');
+        }
+    }, [token])
 
     function handleChange(e) {
         setPassword(e.target.value);

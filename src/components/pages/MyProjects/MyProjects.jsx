@@ -20,18 +20,26 @@ export default function MyProjects() {
 
     const navigate = useNavigate();
     const [projects, setProjects] = useState({});
-    const [token] = useState(localStorage.getItem('token') || '');
+    const [token] = useState(localStorage.getItem('token') || undefined);
     const [results, setResults] = useState('');
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}/project/me`, {
-            headers: {
-                Authorization: `Bearer ${JSON.parse(token)}`,
-            },
-        })
-        .then((response) => {
-            setProjects(response.data.projects);
-        });
+        if (token == undefined) {
+            navigate('/login');
+        }
+
+        try {
+            axios.get(`${import.meta.env.VITE_API_URL}/project/me`, {
+                headers: {
+                    Authorization: `Bearer ${JSON.parse(token)}`,
+                },
+            })
+            .then((response) => {
+                setProjects(response.data.projects);
+            });
+        } catch (error) {
+            console.error('Para acessar está rota você deve estar logado!');
+        }
     }, [token]);      
     
     async function handleDelete(project) {
