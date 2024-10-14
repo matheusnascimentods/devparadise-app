@@ -26,7 +26,7 @@ export default function EditProject() {
       try {
         axios.all([
           axios.get(`${import.meta.env.VITE_API_URL}/user/me`, { headers: { Authorization: `Bearer ${JSON.parse(token)}` }}),
-          axios.get(`${import.meta.env.VITE_API_URL}/project?id=${id}`),
+          axios.get(`${import.meta.env.VITE_API_URL}/project/me?id=${id}`, { headers: { Authorization: `Bearer ${JSON.parse(token)}` }}),
         ])
         .then(axios.spread((userResponse, projectResponse) => {
           setProject(projectResponse.data.project);
