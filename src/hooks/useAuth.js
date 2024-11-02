@@ -20,7 +20,7 @@ export default function useAuth() {
 
     async function register(user) {
         try {
-            let data = await axios.post('http://localhost:3000/user/signup', user)
+            let data = await axios.post(`${import.meta.env.VITE_API_URL}/user/signup`, user)
             .then((response) => {
                 return response.data
             })
@@ -48,7 +48,7 @@ export default function useAuth() {
 
     async function login(user) {
         try {
-            let data = await axios.post("http://localhost:3000/user/login", user)
+            let data = await axios.post(`${import.meta.env.VITE_API_URL}/user/login`, user)
             .then((response) => {
                 return response.data;
             });
