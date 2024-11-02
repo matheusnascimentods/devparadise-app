@@ -6,7 +6,7 @@ import styles from '../../form/Form.module.css';
 
 //Components
 import Input from '../../form/Input'
-import InputTags from '../../Form/TagInput';
+import InputTags from '../../form/TagInput';
 import { Link } from 'react-router-dom';
 
 

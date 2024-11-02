@@ -13,7 +13,7 @@ import 'rsuite/TagInput/styles/index.css';
 import { toast } from 'react-toastify';
 import Input from '../../form/Input';
 import RoundedImage from '../../RoundedImage/RoundedImage';
-import InputTags from '../../Form/TagInput';
+import InputTags from '../../form/TagInput';
 import { Link } from 'react-router-dom';
 
 export default function UpdateUser() {

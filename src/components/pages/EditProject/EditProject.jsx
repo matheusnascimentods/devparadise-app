@@ -8,7 +8,7 @@ import axios from 'axios';
 //styles
 import styles from '../../form/Form.module.css'
 import Input from '../../form/Input';
-import InputTags from '../../Form/TagInput';
+import InputTags from '../../form/TagInput';
 export default function EditProject() {
 
     const [project, setProject] = useState({});
