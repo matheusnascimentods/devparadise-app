@@ -68,7 +68,7 @@ export default function Search() {
                             {users.total > 0 ? (             
                                 <div className={styles.users_container}>
                                     <h4>Usuarios</h4>
-                                    {Array.from(users.users).map((user) => <ProfileCard user={user} />)}
+                                    {Array.from(users.users).map((user) => <ProfileCard user={user} key={user._id}/>)}
                                     
                                 </div>
                             ) : (

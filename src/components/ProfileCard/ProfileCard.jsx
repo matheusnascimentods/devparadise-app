@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function ProfileCard({user, followIsVisible}) {
 
-    const [token] = useState(localStorage.getItem('token') || '');
+    const [token] = useState(localStorage.getItem('token') || undefined);
     const [status, setStatus] = useState({});
     const navigate = useNavigate();
 

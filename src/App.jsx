@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 //Components
-import Header from './components/header/Header';
+import Header from './components/Header/Header';
 import Container from './components/container/Container';
 import { ToastContainer } from 'react-toastify';
 
