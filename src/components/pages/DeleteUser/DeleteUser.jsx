@@ -11,7 +11,7 @@ import styles from './DeleteUser.module.css';
 
 //Components
 import { Link } from 'react-router-dom';
-import Input from '../../Form/Input';
+import Input from '../../form/Input';
 
 export default function DeleteUser() {
 
