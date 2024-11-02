@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from '../../form/Form.module.css';
 
 //Components
-import Input from '../../Form/Input'
+import Input from '../../form/Input'
 import InputTags from '../../Form/TagInput';
 import { Link } from 'react-router-dom';
 

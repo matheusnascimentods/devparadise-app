@@ -11,7 +11,7 @@ import 'rsuite/TagInput/styles/index.css';
 
 //Components
 import { toast } from 'react-toastify';
-import Input from '../../Form/Input';
+import Input from '../../form/Input';
 import RoundedImage from '../../RoundedImage/RoundedImage';
 import InputTags from '../../Form/TagInput';
 import { Link } from 'react-router-dom';

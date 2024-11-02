@@ -7,7 +7,7 @@ import axios from 'axios';
 
 //styles
 import styles from '../../form/Form.module.css'
-import Input from '../../Form/Input';
+import Input from '../../form/Input';
 import InputTags from '../../Form/TagInput';
 
 export default function AddProject() {
