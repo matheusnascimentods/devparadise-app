@@ -111,7 +111,7 @@ export default function UpdateUser() {
                 src={
                   preview
                   ? URL.createObjectURL(preview)
-                  : `${import.meta.env.VITE_API_URL}/images/users/${user.image}`
+                  : `${import.meta.env.VITE_API_URL}/public/images/users/${user.image}`
                 }
                 alt={user.name}
               />

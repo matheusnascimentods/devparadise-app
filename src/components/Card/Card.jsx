@@ -20,7 +20,7 @@ export default function Card({data, color, size, showUsername, showFixed}) {
       <Link to={`/projects/${data._id}`}>
         <div className={styles.card_img}>
           <img src={data.images.length > 0 ? (
-            `${import.meta.env.VITE_API_URL}/images/projects/${data.images[0]}`
+            `${import.meta.env.VITE_API_URL}/public/images/projects/${data.images[0]}`
           ) : (
             defaultPhoto
           )} alt="Imagem" />

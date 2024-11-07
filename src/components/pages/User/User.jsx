@@ -140,7 +140,7 @@ export default function User() {
                 <div className={styles.info_sidebar}>
                     <div className={styles.pfp}>
                         {user.image ? (
-                            <RoundedImage src={`${import.meta.env.VITE_API_URL}/images/users/${user.image}`} alt="Foto de perfil" />
+                            <RoundedImage src={`${import.meta.env.VITE_API_URL}/public/images/users/${user.image}`} alt="Foto de perfil" />
                         ) : (
                             <RoundedImage src={defaultPfp} alt="Foto de perfil" />
                         )}

@@ -57,7 +57,7 @@ export default function ProjectView() {
             {images.length > 0 ? (
               <Carousel autoplay className="custom-slider">
                 {images.map((image) => (
-                  <img src={`${import.meta.env.VITE_API_URL}/images/projects/${image}`} alt='imagem' key={image}/>
+                  <img src={`${import.meta.env.VITE_API_URL}/public/images/projects/${image}`} alt='imagem' key={image}/>
                 ))}
               </Carousel>
             ) : (

@@ -44,7 +44,7 @@ export default function Header() {
       .then((response) => {
           setUser(response.data.user);
           if (user.image != undefined) {
-            setSrc(`${import.meta.env.VITE_API_URL}/images/users/${user.image}`);
+            setSrc(`${import.meta.env.VITE_API_URL}/public/images/users/${user.image}`);
           }
       });
     }  
@@ -61,7 +61,7 @@ export default function Header() {
             <GiHamburgerMenu size={30} color='000'/>
           ) : (
             <RoundedImage src={user.image != undefined ? (
-              `${import.meta.env.VITE_API_URL}/images/users/${user.image}`
+              `${import.meta.env.VITE_API_URL}/public/images/users/${user.image}`
             ) : (
               defaultPfp
             )} 
@@ -74,7 +74,7 @@ export default function Header() {
               {authenticated && (
                 <>
                   {user.image != undefined ? (
-                    <RoundedImage src={`${import.meta.env.VITE_API_URL}/images/users/${user.image}`} alt="Foto de perfil" />
+                    <RoundedImage src={`${import.meta.env.VITE_API_URL}/public/images/users/${user.image}`} alt="Foto de perfil" />
                     ) : (
                     <RoundedImage src={defaultPfp} alt="Foto de perfil" />
                   )}

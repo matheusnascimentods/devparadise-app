@@ -65,7 +65,7 @@ export default function Project({project, handleDelete, handleFavorite, myProjec
           <div className={styles.pfp}>
             {user.image ? (
               <Link to={`/user/${user.username}`}>
-                <RoundedImage src={`${import.meta.env.VITE_API_URL}/images/users/${user.image}`} alt="Foto de perfil" />
+                <RoundedImage src={`${import.meta.env.VITE_API_URL}/public/images/users/${user.image}`} alt="Foto de perfil" />
               </Link>
             ) : (
               <Link to={`/user/${user.username}`}>

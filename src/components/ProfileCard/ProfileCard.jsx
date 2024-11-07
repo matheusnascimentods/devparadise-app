@@ -94,7 +94,7 @@ export default function ProfileCard({user, followIsVisible}) {
         <div className={styles.user_card}>
             <Link to={`/user/${user.username}`}>
                 {user.image ? (
-                    <RoundedImage src={`${import.meta.env.VITE_API_URL}/images/users/${user.image}`} alt="Foto de perfil" />
+                    <RoundedImage src={`${import.meta.env.VITE_API_URL}/public/images/users/${user.image}`} alt="Foto de perfil" />
                 ) : (
                     <RoundedImage src={defaultPfp} alt="Foto de perfil" />
                 )}
