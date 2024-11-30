@@ -50,7 +50,6 @@ export default function Signup() {
               <InputTags text="Habilidades" name='skils' placeholder='Escolha as tecnologias que você domina' handleOnChange={handleCreate} />
               <Input text="E-mail" type='email' name='email' placeholder='Informe o seu e-mail' handleOnChange={handleChange}/>
               <Input text="CPF" type='number' name='cpf' placeholder='Informe o seu CPF' handleOnChange={handleChange}/>
-              <Input text="Telefone" type='phone' name='phone' placeholder='Informe o seu Telefone' handleOnChange={handleChange}/>
               <Input text="Descrição" type='text' name='description' placeholder='Informe uma descrição sobre você' handleOnChange={handleChange} />
               <Input text="Senha" type='password' name='password' placeholder='Escolha uma senha' handleOnChange={handleChange}/>
 
